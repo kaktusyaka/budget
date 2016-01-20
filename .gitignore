@@ -1,0 +1,13 @@
+/.bundle
+/log/*
+chromedriver.log
+/tmp
+.sass-cache/
+*sw?
+.ruby-version
+.ruby-gemset
+tmp/**/*
+public/stylesheets/*
+public/system/*
+config/database.yml
+uploads/*
