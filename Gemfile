@@ -19,13 +19,16 @@ gem 'omniauth-twitter'
 
 group :development, :test do
   gem 'byebug'
-  gem 'web-console', '~> 2.0'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'rspec-rails'
+  gem 'web-console', '~> 2.0'
+  gem 'vcr'
 end
 
 group :test do
+  gem 'database_cleaner'
   gem 'shoulda-matchers'
+  gem 'webmock'
 end
 
