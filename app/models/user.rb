@@ -11,15 +11,15 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth auth, current_user = nil
     authorization = Authorization.from_omniauth auth
+    user = current_user || User.where(({ email: [auth.info.email, self.temp_email(auth.uid, auth.provider)]})).first
 
     if authorization.user.blank?
-      user = current_user || User.where('email = ?', auth.info.email).first
 
       if user.nil?
         user = User.new(
           first_name: auth.extra.raw_info.name.split(/ /).first,
           last_name: auth.extra.raw_info.name.split(/ /).last,
-          email:  auth.info.email || "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+          email:  auth.info.email || self.temp_email(auth.uid, auth.provider),
           password: Devise.friendly_token[0,20]
         )
         user.skip_confirmation!
@@ -32,5 +32,9 @@ class User < ActiveRecord::Base
       authorization.save!
     end
     authorization.user
+  end
+
+  def self.temp_email( uid, provider )
+    "#{TEMP_EMAIL_PREFIX}-#{uid}-#{provider}.com"
   end
 end
