@@ -1,0 +1,21 @@
+{
+  provider: :twitter,
+  uid: "1111111111",
+  info: {
+    name: "John Doe",
+    nickname: "JohnDoe"
+  },
+
+  credentials: {
+    token: "1111111111-N5VBXygPgkM1JptmpJ7gHQ8kEQ9oDYBSeDhYNE4",
+  },
+
+  extra: {
+    raw_info:{
+      id: "1111111111",
+      name: "John",
+      screen_name: "JohnDoe",
+      verified: false
+    }
+  }
+}

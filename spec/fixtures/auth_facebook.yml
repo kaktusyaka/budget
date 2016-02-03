@@ -1,0 +1,20 @@
+{
+  provider: :facebook,
+  uid: "1111111111",
+  info: {
+    name: "John Doe",
+    email: "john.doe@mailinator.com"
+  },
+
+  credentials: {
+    token: "1111111111-N5VBXygPgkM1JptmpJ7gHQ8kEQ9oDYBSeDhYNE4",
+  },
+
+  extra: {
+    raw_info:{
+      email: "john.doe@mailinator.com",
+      id: "1111111111",
+      name: "John Doe"
+    }
+  }
+}
