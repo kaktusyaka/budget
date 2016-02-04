@@ -1,6 +1,6 @@
 require 'features/acceptance_helper'
 
-feature 'Sign up' do
+feature 'Sign in' do
   given(:user) { create(:user, email: 'user@example.com', password: 'test111') }
 
   scenario 'Signing in with correct credentials' do
