@@ -11,3 +11,4 @@ public/stylesheets/*
 public/system/*
 config/database.yml
 uploads/*
+.byebug_history
