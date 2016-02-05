@@ -1,0 +1,237 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.twitter.com/oauth/request_token
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '0'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Authorization:
+      - OAuth oauth_callback="http%3A%2F%2F127.0.0.1%3A64862%2Fusers%2Fauth%2Ftwitter%2Fcallback",
+        oauth_consumer_key="cVzRzqzE6t922xd6cf22LnBsH", oauth_nonce="8ZknfsAei0kFGE2hKHOFrGjocKCrSAWwU9ilV1cKQw",
+        oauth_signature="4PAba8J5KFZFzR7JnjGFUyLgDT8%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1454709189", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Content-Length:
+      - '129'
+      Content-Security-Policy:
+      - default-src 'none'; connect-src 'self'; font-src https://abs.twimg.com https://abs-0.twimg.com
+        data:; frame-src 'self' twitter:; img-src https://abs.twimg.com https://*.twimg.com
+        https://pbs.twimg.com data:; media-src 'none'; object-src 'none'; script-src
+        https://abs.twimg.com https://abs-0.twimg.com https://twitter.com https://mobile.twitter.com;
+        style-src https://abs.twimg.com https://abs-0.twimg.com; report-uri https://twitter.com/i/csp_report?a=NVQWGYLXFVWG6Z3JNY%3D%3D%3D%3D%3D%3D&ro=false;
+      Content-Type:
+      - text/html;charset=utf-8
+      Date:
+      - Fri, 05 Feb 2016 21:52:59 GMT
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Last-Modified:
+      - Fri, 05 Feb 2016 21:52:59 GMT
+      Ml:
+      - S
+      Pragma:
+      - no-cache
+      Server:
+      - tsa_l
+      Set-Cookie:
+      - guest_id=v1%3A145470917884543652; Domain=.twitter.com; Path=/; Expires=Sun,
+        04-Feb-2018 21:52:59 UTC
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Connection-Hash:
+      - 7682ef9a26477a297bd31cb9c9a62171
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Response-Time:
+      - '471'
+      X-Transaction:
+      - ae6c19be972d474c
+      X-Twitter-Response-Tags:
+      - BouncerCompliant
+      X-Ua-Compatible:
+      - IE=edge,chrome=1
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: oauth_token=di8xWwAAAAAAj_0eAAABUrNsgs0&oauth_token_secret=PY71Pufo2QbEGXIW5Bofq5alee9Pxg9N&oauth_callback_confirmed=true
+    http_version: 
+  recorded_at: Fri, 05 Feb 2016 21:53:09 GMT
+- request:
+    method: post
+    uri: https://api.twitter.com/oauth/access_token
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - OAuth gem v0.4.7
+      Content-Length:
+      - '0'
+      Authorization:
+      - OAuth oauth_body_hash="2jmj7l5rSw0yVb%2FvlWAYkK%2FYBwk%3D", oauth_consumer_key="cVzRzqzE6t922xd6cf22LnBsH",
+        oauth_nonce="L7ATir1zVkBYdvEON5o4zH1rlmdcEjPbC4t9eQwtkiM", oauth_signature="AbtY4jUQxQR%2BXh%2FuEE8L31H%2BNjg%3D",
+        oauth_signature_method="HMAC-SHA1", oauth_timestamp="1454709192", oauth_token="di8xWwAAAAAAj_0eAAABUrNsgs0",
+        oauth_verifier="sUDzKSb7qJ8Hc37CK8dcOemvZC903PG2", oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Content-Length:
+      - '186'
+      Content-Security-Policy:
+      - default-src 'none'; connect-src 'self'; font-src https://abs.twimg.com https://abs-0.twimg.com
+        data:; frame-src 'self' twitter:; img-src https://abs.twimg.com https://*.twimg.com
+        https://pbs.twimg.com data:; media-src 'none'; object-src 'none'; script-src
+        https://abs.twimg.com https://abs-0.twimg.com https://twitter.com https://mobile.twitter.com;
+        style-src https://abs.twimg.com https://abs-0.twimg.com; report-uri https://twitter.com/i/csp_report?a=NVQWGYLXFVWG6Z3JNY%3D%3D%3D%3D%3D%3D&ro=false;
+      Content-Type:
+      - text/html;charset=utf-8
+      Date:
+      - Fri, 05 Feb 2016 21:53:02 GMT
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Last-Modified:
+      - Fri, 05 Feb 2016 21:53:02 GMT
+      Ml:
+      - S
+      Pragma:
+      - no-cache
+      Server:
+      - tsa_l
+      Set-Cookie:
+      - guest_id=v1%3A145470918220259996; Domain=.twitter.com; Path=/; Expires=Sun,
+        04-Feb-2018 21:53:02 UTC
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Connection-Hash:
+      - b1cfd94bb5d2f1f339042b6201389506
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Response-Time:
+      - '696'
+      X-Transaction:
+      - 3063642e10ea2453
+      X-Twitter-Response-Tags:
+      - BouncerCompliant
+      X-Ua-Compatible:
+      - IE=edge,chrome=1
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: oauth_token=4858976945-N5VBXygPgkM1JptmpJ7gHQ8kEQ9oDYBSeDhYNE4&oauth_token_secret=eVskX8h6keNV4Wz0PyTuOQ7SoJsYltDuaeL1oJFWAzKYv&user_id=4858976945&screen_name=NadyaPeschanska&x_auth_expires=0
+    http_version: 
+  recorded_at: Fri, 05 Feb 2016 21:53:13 GMT
+- request:
+    method: get
+    uri: https://api.twitter.com/1.1/account/verify_credentials.json?include_email=true&include_entities=false&skip_status=true
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - OAuth gem v0.4.7
+      Authorization:
+      - OAuth oauth_consumer_key="cVzRzqzE6t922xd6cf22LnBsH", oauth_nonce="9w2T5kyN6FDtCyxtkMfIgsprWTfVeGC6BWr3Sm8",
+        oauth_signature="9lMqPg64kbiJ4FgmfXutmxeRoLM%3D", oauth_signature_method="HMAC-SHA1",
+        oauth_timestamp="1454709193", oauth_token="4858976945-N5VBXygPgkM1JptmpJ7gHQ8kEQ9oDYBSeDhYNE4",
+        oauth_version="1.0"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, pre-check=0, post-check=0
+      Content-Disposition:
+      - attachment; filename=json.json
+      Content-Length:
+      - '501'
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Fri, 05 Feb 2016 21:53:03 GMT
+      Expires:
+      - Tue, 31 Mar 1981 05:00:00 GMT
+      Last-Modified:
+      - Fri, 05 Feb 2016 21:53:02 GMT
+      Pragma:
+      - no-cache
+      Server:
+      - tsa_l
+      Set-Cookie:
+      - guest_id=v1%3A145470918291713476; Domain=.twitter.com; Path=/; Expires=Sun,
+        04-Feb-2018 21:53:02 UTC
+      - lang=en; Path=/
+      Status:
+      - 200 OK
+      Strict-Transport-Security:
+      - max-age=631138519
+      X-Access-Level:
+      - read-write
+      X-Connection-Hash:
+      - 6315fc265b7c1161c6b479ce65677369
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Rate-Limit-Limit:
+      - '15'
+      X-Rate-Limit-Remaining:
+      - '13'
+      X-Rate-Limit-Reset:
+      - '1454709959'
+      X-Response-Time:
+      - '180'
+      X-Transaction:
+      - 96b09989954d9d43
+      X-Twitter-Response-Tags:
+      - BouncerCompliant
+      - BouncerExempt
+      X-Xss-Protection:
+      - 1; mode=block
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":4858976945,"id_str":"4858976945","name":"Nadiia","screen_name":"NadyaPeschanska","location":"","description":"","url":null,"entities":{"description":{"urls":[]}},"protected":false,"followers_count":0,"friends_count":0,"listed_count":0,"created_at":"Fri
+        Jan 29 04:25:47 +0000 2016","favourites_count":0,"utc_offset":null,"time_zone":null,"geo_enabled":false,"verified":false,"statuses_count":0,"lang":"en","contributors_enabled":false,"is_translator":false,"is_translation_enabled":false,"profile_background_color":"F5F8FA","profile_background_image_url":null,"profile_background_image_url_https":null,"profile_background_tile":false,"profile_image_url":"http:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_4_normal.png","profile_image_url_https":"https:\/\/abs.twimg.com\/sticky\/default_profile_images\/default_profile_4_normal.png","profile_link_color":"2B7BB9","profile_sidebar_border_color":"C0DEED","profile_sidebar_fill_color":"DDEEF6","profile_text_color":"333333","profile_use_background_image":true,"has_extended_profile":false,"default_profile":true,"default_profile_image":true,"following":false,"follow_request_sent":false,"notifications":false}'
+    http_version: 
+  recorded_at: Fri, 05 Feb 2016 21:53:13 GMT
+recorded_with: VCR 3.0.1

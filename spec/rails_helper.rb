@@ -7,6 +7,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'webmock/rspec'
+require 'vcr'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
