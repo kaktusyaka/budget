@@ -4,6 +4,7 @@ gem 'pg'
 gem 'rails', '4.2.5'
 gem 'haml'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem "font-awesome-rails"
