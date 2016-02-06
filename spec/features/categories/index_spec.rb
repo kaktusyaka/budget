@@ -24,4 +24,15 @@ feature 'GET #index' do
     expect(page).to_not have_content @category2.name
     expect(page).to have_content @category3.name
   end
+
+  scenario 'user can sort categories', js: true do
+    login(user_1)
+    visit '/categories'
+    page.all("ul li").first.text.should == @category1.name
+
+    src  = find("#category_#{@category1.id}")
+    dest = find("#category_#{@category2.id}")
+    src.drag_to(dest)
+    page.all("ul li").last.text.should == @category1.name
+  end
 end
