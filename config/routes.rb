@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :categories, only: [:index]
+
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
   root 'home#index'
 
