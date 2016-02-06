@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :categories, only: [:index]
+  resources :categories do
+    collection { post :sort }
+  end
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
   root 'home#index'
