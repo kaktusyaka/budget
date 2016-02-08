@@ -29,8 +29,8 @@
       = f.number_field :amount, min: 0.01, step: 1, class: 'form-control'
   .form-group
     = f.label :description, class: 'col-sm-2 control-label'
-    .col-sm-3
-      = f.text_area :description, class: 'form-control'
+    .col-sm-5
+      = f.text_area :description, class: 'form-control wysihtml5'
   .form-group
     .col-sm-offset-2.col-sm-3
       = f.submit "Submit", class: 'btn btn-default'

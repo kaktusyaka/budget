@@ -15,6 +15,7 @@
 //= require jquery-ui/sortable
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
+//= require bootstrap-wysihtml5
 //= require select2
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require_tree .
