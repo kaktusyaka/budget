@@ -26,7 +26,7 @@
   .form-group
     = f.label :amount, class: 'col-sm-2 control-label'
     .col-sm-3
-      = f.text_field :amount, class: 'form-control'
+      = f.number_field :amount, min: 0.01, step: 1, class: 'form-control'
   .form-group
     = f.label :description, class: 'col-sm-2 control-label'
     .col-sm-3
