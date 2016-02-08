@@ -16,8 +16,7 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    @transaction = Transaction.new(transaction_params)
-    @transaction.user = current_user
+    @transaction = current_user.transactions.build(transaction_params)
 
     if @transaction.save
       redirect_to @transaction, notice: 'Transaction was successfully created.'

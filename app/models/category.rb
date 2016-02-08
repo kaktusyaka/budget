@@ -3,5 +3,5 @@ class Category < ActiveRecord::Base
   validates :name, uniqueness: { scope: :user_id }, presence: true, length: { maximum: 255 }
   validates :user, presence: true
 
-  default_scope { order('position') }
+  default_scope -> { order('position') }
 end
