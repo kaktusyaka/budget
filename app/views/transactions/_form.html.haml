@@ -1,0 +1,36 @@
+= form_for @transaction, html: { class: 'form-horizontal', id: 'transaction_form' } do |f|
+  - if @transaction.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@transaction.errors.count, "error")
+        prohibited this transaction from being saved:
+      %ul
+        - @transaction.errors.full_messages.each do |message|
+          %li= message
+  .form-group
+    = f.label :category_id, class: 'col-sm-2 control-label'
+    .col-sm-3
+      = f.select(:category_id, current_user.categories.collect {|c| [c.name, c.id]}, {include_blank: true}, {class: 'form-control', id: 'transaction_categories'})
+  .form-group
+    = f.label :income, "Type", class: 'col-sm-2 control-label'
+    .col-sm-3
+      =f.radio_button :income, false
+      = label :expenditure, 'Expenditure'
+      %br
+      = f.radio_button :income, true
+      = label :income, 'Income'
+  .form-group
+    = f.label :date, class: 'col-sm-2 control-label'
+    .col-sm-3
+      = f.date_select :date, class: 'form-control'
+  .form-group
+    = f.label :amount, class: 'col-sm-2 control-label'
+    .col-sm-3
+      = f.text_field :amount, class: 'form-control'
+  .form-group
+    = f.label :description, class: 'col-sm-2 control-label'
+    .col-sm-3
+      = f.text_area :description, class: 'form-control'
+  .form-group
+    .col-sm-offset-2.col-sm-3
+      = f.submit "Submit", class: 'btn btn-default'
