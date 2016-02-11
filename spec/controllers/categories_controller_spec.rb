@@ -1,12 +1,14 @@
 require 'rails_helper'
 
 describe CategoriesController do
-  let(:user) { create(:user) }
-  before     { sign_in(user) }
+  let(:user)     { create(:user) }
+  before         { sign_in(user) }
+  let(:category) { create(:category, user_id: user.id) }
 
   describe "GET /index" do
     context "with success" do
       before { get :index }
+
       it { expect(response).to be_success }
       it { expect(response).to have_http_status(200) }
       it { expect(response).to render_template("index") }
@@ -14,10 +16,10 @@ describe CategoriesController do
 
     context "with user with categories and without categories" do
       it "loads all of the categories into @categories" do
-        category1, category2 = create(:category, user: user), create(:category, user: user)
+        category2 = create(:category, user: user)
         get :index
 
-        expect(assigns(:categories)).to match_array([category1, category2])
+        expect(assigns(:categories)).to match_array([category, category2])
       end
 
       it "another user cant see categories" do
@@ -61,29 +63,23 @@ describe CategoriesController do
   end
 
   describe "GET /show" do
-    before {
-      @category = create(:category, user_id: user.id)
-      get :show, id: @category.id
-    }
+    before { get :show, id: category.id }
 
     it { expect(response).to render_template :show   }
-    it { expect(assigns(:category)).to eq(@category) }
+    it { expect(assigns(:category)).to eq(category) }
   end
 
   describe "GET /edit" do
-    before {
-      @category = create(:category, user_id: user.id)
-      get :edit, id: @category.id
-    }
+    before { get :edit, id: category.id }
+
     it { expect(response).to render_template :edit  }
-    it { expect(assigns(:category)).to eq(@category) }
+    it { expect(assigns(:category)).to eq(category) }
   end
 
   describe "PUT /update" do
     context "with valid params" do
       before {
-        @category = create(:category, user_id: user.id)
-        put :update, id: @category.id, category: @category.attributes = {name: "Books"}
+        put :update, id: category.id, category: category.attributes = {name: "Books"}
       }
 
       it { expect(response).to redirect_to @category  }
@@ -91,8 +87,7 @@ describe CategoriesController do
 
     context "with invalid params" do
       before {
-        @category = create(:category, user_id: user.id)
-        put :update, id: @category.id, category: attributes_for(:invalid_category, user_id: user.id)
+        put :update, id: category.id, category: attributes_for(:invalid_category, user_id: user.id)
       }
 
       it { expect(response).to render_template :edit  }
@@ -100,8 +95,7 @@ describe CategoriesController do
   end
 
   describe "DELETE /destroy" do
-    before { @category = create(:category, user_id: user.id) }
-    it { delete :destroy, id: @category.id }
+    it { delete :destroy, id: category.id }
   end
 end
 
