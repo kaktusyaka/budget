@@ -1,11 +1,14 @@
 class CategoriesController < ApplicationController
+  before_action :set_category, only: [:show, :edit, :update]
 
   def index
     @categories = current_user.categories
   end
 
   def show
-    @category = current_user.categories.find(params[:id])
+  end
+
+  def edit
   end
 
   def new
@@ -21,6 +24,13 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def update
+    if @category.update(category_params)
+      redirect_to @category, notice: "Category was successfully updated."
+    else
+      render :edit
+    end
+  end
 
   def sort
     params[:category].each_with_index do |id, index|
@@ -31,7 +41,7 @@ class CategoriesController < ApplicationController
 
   private
     def set_category
-      @category = Category.find(params[:id])
+      @category = current_user.categories.find(params[:id])
     end
 
     def category_params

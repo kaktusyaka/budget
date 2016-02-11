@@ -69,5 +69,34 @@ describe CategoriesController do
     it { expect(response).to render_template :show   }
     it { expect(assigns(:category)).to eq(@category) }
   end
+
+  describe "GET /edit" do
+    before {
+      @category = create(:category, user_id: user.id)
+      get :edit, id: @category.id
+    }
+    it { expect(response).to render_template :edit  }
+    it { expect(assigns(:category)).to eq(@category) }
+  end
+
+  describe "PUT /update" do
+    context "with valid params" do
+      before {
+        @category = create(:category, user_id: user.id)
+        put :update, id: @category.id, category: @category.attributes = {name: "Books"}
+      }
+
+      it { expect(response).to redirect_to @category  }
+    end
+
+    context "with invalid params" do
+      before {
+        @category = create(:category, user_id: user.id)
+        put :update, id: @category.id, category: attributes_for(:invalid_category, user_id: user.id)
+      }
+
+      it { expect(response).to render_template :edit  }
+    end
+  end
 end
 
