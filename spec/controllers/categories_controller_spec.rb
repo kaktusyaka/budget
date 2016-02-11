@@ -5,22 +5,27 @@ describe CategoriesController do
   before     { sign_in(user) }
 
   describe "GET /index" do
-    it "response successfully with an HTTP status 200" do
-      get :index
-      expect(response).to be_success
-      expect(response).to have_http_status(200)
+    context "with success" do
+      before { get :index }
+      it { expect(response).to be_success }
+      it { expect(response).to have_http_status(200) }
+      it { expect(response).to render_template("index") }
     end
 
-    it "renders the index template" do
-      get :index
-      expect(response).to render_template("index")
-    end
+    context "with user with categories and without categories" do
+      it "loads all of the categories into @categories" do
+        category1, category2 = create(:category, user: user), create(:category, user: user)
+        get :index
 
-    it "loads all of the categories into @categories" do
-      category1, category2 = create(:category, user: user), create(:category, user: user)
-      get :index
+        expect(assigns(:categories)).to match_array([category1, category2])
+      end
 
-      expect(assigns(:categories)).to match_array([category1, category2])
+      it "another user cant see categories" do
+        another_user = create(:user)
+        sign_out(user)
+        sign_in(another_user)
+        expect(another_user.categories).to match_array([])
+      end
     end
   end
 
@@ -53,6 +58,16 @@ describe CategoriesController do
         expect(response).to render_template :new
       end
     end
+  end
+
+  describe "GET /show" do
+    before {
+      @category = create(:category, user_id: user.id)
+      get :show, id: @category.id
+    }
+
+    it { expect(response).to render_template :show   }
+    it { expect(assigns(:category)).to eq(@category) }
   end
 end
 

@@ -4,6 +4,10 @@ class CategoriesController < ApplicationController
     @categories = current_user.categories
   end
 
+  def show
+    @category = current_user.categories.find(params[:id])
+  end
+
   def new
     @category = Category.new
   end
