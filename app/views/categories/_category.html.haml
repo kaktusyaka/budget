@@ -1,3 +1,5 @@
 = content_tag_for :li, category, class: "ui-state-default"  do
   %span.ui-icon.ui-icon-arrowthick-2-n-s
   = category.name
+  = link_to category, method: :delete,  data: { confirm: 'Are you sure?' }, class: 'delete_category' do
+    .glyphicon.glyphicon-remove

@@ -98,5 +98,10 @@ describe CategoriesController do
       it { expect(response).to render_template :edit  }
     end
   end
+
+  describe "DELETE /destroy" do
+    before { @category = create(:category, user_id: user.id) }
+    it { delete :destroy, id: @category.id }
+  end
 end
 

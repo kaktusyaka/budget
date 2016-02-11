@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update]
+  before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def index
     @categories = current_user.categories
@@ -30,6 +30,11 @@ class CategoriesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @category.destroy
+    redirect_to categories_url, notice: "Category was successfully destroyed."
   end
 
   def sort
