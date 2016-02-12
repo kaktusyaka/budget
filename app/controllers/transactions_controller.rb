@@ -2,7 +2,7 @@ class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
 
   def index
-    @transactions = current_user.transactions
+    @transactions = current_user.transactions.includes(:category)
   end
 
   def show
@@ -40,7 +40,7 @@ class TransactionsController < ApplicationController
 
   private
     def set_transaction
-      @transaction = Transaction.find(params[:id])
+      @transaction = current_user.transactions.find(params[:id])
     end
 
     def transaction_params

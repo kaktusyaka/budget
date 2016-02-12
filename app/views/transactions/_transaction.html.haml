@@ -1,5 +1,5 @@
 %tr
-  %td= transaction.category.name
+  %td= transaction.category.try :name
   %td= type(transaction.income)
   %td= number_to_currency transaction.amount
   %td= number_to_currency transaction.amount
