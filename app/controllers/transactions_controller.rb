@@ -1,13 +1,9 @@
 class TransactionsController < ApplicationController
-  before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+  before_action :set_transaction, only: [:edit, :update, :destroy]
 
   def index
     @q = current_user.transactions.search(params[:q])
     @transactions = @q.result.includes(:category).page(params[:page])
-    @q.build_condition if @q.conditions.empty?
-  end
-
-  def show
   end
 
   def new
@@ -21,7 +17,7 @@ class TransactionsController < ApplicationController
     @transaction = current_user.transactions.build(transaction_params)
 
     if @transaction.save
-      redirect_to @transaction, notice: 'Transaction was successfully created.'
+      redirect_to transactions_url, notice: 'Transaction was successfully created.'
     else
       render :new
     end
@@ -29,7 +25,7 @@ class TransactionsController < ApplicationController
 
   def update
     if @transaction.update(transaction_params)
-      redirect_to @transaction, notice: 'Transaction was successfully updated.'
+      redirect_to transactions_url, notice: 'Transaction was successfully updated.'
     else
       render :edit
     end

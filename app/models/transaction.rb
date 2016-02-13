@@ -10,10 +10,4 @@ class Transaction < ActiveRecord::Base
   end
   validates :income, inclusion: { in: [true, false]}
   validates :description, length: { maximum: 65536 }
-
-  RANSACKABLE_ATTRIBUTES = ["income", "date", "amount", "description"]
-
-  def self.ransackable_attributes auth_object = nil
-    RANSACKABLE_ATTRIBUTES + _ransackers.keys
-  end
 end

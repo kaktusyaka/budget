@@ -20,4 +20,3 @@
 
 $ ->
   Transactions.Form.init() if $('#transaction_form').length
-  RansackSearch.init() if $('#transaction_search').length

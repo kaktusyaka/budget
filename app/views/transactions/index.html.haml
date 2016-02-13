@@ -1,11 +1,8 @@
 .col-md-12
   = search_form_for @q do |f|
-    = f.condition_fields do |c|
-      = render "condition_fields", f: c
-    = link_to_add_fields "Add Condition", f, :condition
     .form-group
-      .col-sm-3
-        = f.submit "Search", class: 'btn btn-default'
+      = f.label :category_name_or_description_cont, 'Category Name or Description'
+      = f.text_field :category_name_or_description_cont
 
 .col-md-12
   %h1 Listing Transactions

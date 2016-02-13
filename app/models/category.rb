@@ -4,10 +4,4 @@ class Category < ActiveRecord::Base
   validates :user, presence: true
 
   default_scope -> { order('position') }
-
-  RANSACKABLE_ATTRIBUTES = ["name"]
-
-  def self.ransackable_attributes auth_object = nil
-    RANSACKABLE_ATTRIBUTES + _ransackers.keys
-  end
 end

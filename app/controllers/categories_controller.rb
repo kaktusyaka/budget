@@ -1,11 +1,8 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:edit, :update, :destroy]
 
   def index
     @categories = current_user.categories.page(params[:page])
-  end
-
-  def show
   end
 
   def edit
@@ -18,7 +15,7 @@ class CategoriesController < ApplicationController
   def create
     @category = current_user.categories.build(category_params)
     if @category.save
-      redirect_to @category, notice: "Category was successfully created"
+      redirect_to categories_url, notice: "Category was successfully created"
     else
       render :new
     end
@@ -26,7 +23,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update(category_params)
-      redirect_to @category, notice: "Category was successfully updated."
+      redirect_to categories_url, notice: "Category was successfully updated."
     else
       render :edit
     end
