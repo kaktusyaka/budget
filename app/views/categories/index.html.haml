@@ -1,5 +1,6 @@
 %h1 Categories
-= paginate @categories
+.col-sm-offset-2
+  = paginate @categories
 %ul#sortable{ "data-update-url" => sort_categories_url }
   = render partial: "category", collection: @categories
 

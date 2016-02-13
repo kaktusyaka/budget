@@ -2,7 +2,9 @@ class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
 
   def index
-    @transactions = current_user.transactions.includes(:category).page(params[:page])
+    @q = current_user.transactions.search(params[:q])
+    @transactions = @q.result.includes(:category).page(params[:page])
+    @q.build_condition if @q.conditions.empty?
   end
 
   def show

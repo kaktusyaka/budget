@@ -1,7 +1,7 @@
 %tr
   %td= transaction.category.try :name
   %td= type(transaction.income)
-  %td= number_to_currency transaction.amount
+  %td= transaction.date.strftime('%d/%m/%Y')
   %td= number_to_currency transaction.amount
   %td= raw transaction.description
   %td

@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
+gem 'kaminari'
 gem 'pg'
 gem 'rails', '4.2.5'
+gem 'ransack'
 gem 'validates_timeliness', '~> 4.0'
-gem 'kaminari'
 
 # Assets
 gem 'haml'
