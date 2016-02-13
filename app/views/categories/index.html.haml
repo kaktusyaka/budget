@@ -3,6 +3,9 @@
   = paginate @categories
 %ul#sortable{ "data-update-url" => sort_categories_url }
   = render partial: "category", collection: @categories
+  - if @categories.blank?
+    %li.ui-state-default.text-center
+      = 'No categories'
 
 .col-md-12
   %br
