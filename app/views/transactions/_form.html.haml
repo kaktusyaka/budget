@@ -22,7 +22,10 @@
   .form-group
     = f.label :date, class: 'col-sm-2 control-label'
     .col-sm-3
-      = f.text_field :date, value: (f.object.date.strftime('%d/%m/%Y') if f.object.date), placeholder: "dd/mm/yyyy", 'data-behaviour': 'datepicker', class: 'form-control datepicker'
+      = f.text_field :date, value: (f.object.date.strftime('%d/%m/%Y') if f.object.date),
+                            placeholder: "dd/mm/yyyy",
+                            'data-behaviour' => 'datepicker',
+                            class: 'form-control datepicker'
   .form-group
     = f.label :amount, class: 'col-sm-2 control-label'
     .col-sm-3

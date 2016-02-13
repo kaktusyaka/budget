@@ -11,9 +11,9 @@ gem 'haml'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'coffee-rails', '~> 4.1.0'
-gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap-wysihtml5-rails'
+gem 'bootstrap-datepicker-rails'
 gem "font-awesome-rails"
 gem 'sass-rails', '~> 5.0'
 gem "select2-rails"

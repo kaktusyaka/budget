@@ -1,20 +1,13 @@
 @module 'Transactions', ->
-  @module 'SearchRansack', ->
-    @init  =->
-      $('form').on 'click', '.remove_fields', (event) ->
-        $(this).closest('.form-group').remove()
-        event.preventDefault()
-
-      $('form').on 'click', '.add_fields', (event) ->
-        time = new Date().getTime()
-        regexp = new RegExp($(this).data('id'), 'g')
-        $(this).before($(this).data('fields').replace(regexp, time))
-        event.preventDefault()
-
   @module 'Form', ->
     @init =->
       $('#transaction_categories').select2 theme: 'bootstrap'
-      $('.datepicker').datepicker format: 'dd/mm/yyyy'
+
+      $('.datepicker').datepicker
+        format: 'dd/mm/yyyy'
+        weekStart: 1
+        clearBtn: true
+        todayHighlight: true
       $('.wysihtml5').each (i, elem) ->
         $(elem).wysihtml5()
 
