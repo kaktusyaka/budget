@@ -3,7 +3,8 @@ class TransactionsController < ApplicationController
 
   def index
     @q = current_user.transactions.search(params[:q])
-    @transactions = @q.result.includes(:category).page(params[:page])
+    @q.sorts = ['date desc'] if @q.sorts.empty?
+    @transactions = @q.result(distinct: true).includes(:category).page(params[:page])
   end
 
   def new
