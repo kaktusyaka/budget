@@ -1,0 +1,21 @@
+.navbar-header
+  %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+    %span.sr-only Toggle navigation
+    %span.icon-bar
+    %span.icon-bar
+    %span.icon-bar
+  = link_to "SaveBudget", root_path, class: 'navbar-brand'
+.collapse.navbar-collapse
+  %ul.nav.navbar-nav
+    %li
+      = link_to "Categories", categories_path
+    %li
+      = link_to "Transactions", transactions_path
+  %ul.nav.navbar-nav.navbar-right
+    %li
+      - if user_signed_in?
+        = link_to "Sign out", destroy_user_session_path, :method => :delete
+      - else
+        = link_to "Sign Up", new_user_registration_path
+        or #{link_to "Sign In", new_user_session_path}
+
