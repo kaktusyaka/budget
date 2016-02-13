@@ -43,7 +43,7 @@ describe CategoriesController do
       it "redirects to a new category" do
         post :create, category: attributes_for(:category, user_id: user.id)
 
-        expect(response).to redirect_to Category.last
+        expect(response).to redirect_to categories_url
       end
     end
 
@@ -62,27 +62,13 @@ describe CategoriesController do
     end
   end
 
-  describe "GET /show" do
-    before { get :show, id: category.id }
-
-    it { expect(response).to render_template :show   }
-    it { expect(assigns(:category)).to eq(category) }
-  end
-
-  describe "GET /edit" do
-    before { get :edit, id: category.id }
-
-    it { expect(response).to render_template :edit  }
-    it { expect(assigns(:category)).to eq(category) }
-  end
-
   describe "PUT /update" do
     context "with valid params" do
       before {
         put :update, id: category.id, category: category.attributes = {name: "Books"}
       }
 
-      it { expect(response).to redirect_to @category  }
+      it { expect(response).to redirect_to categories_url  }
     end
 
     context "with invalid params" do
