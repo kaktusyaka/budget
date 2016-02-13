@@ -11,8 +11,6 @@
 
     #container
       #user_notices
-        - if user_signed_in?
-          Signed in as #{current_user.email}.
       - flash.each do |name, msg|
         = content_tag :div, msg, id: "flash_#{name}"
       = yield
