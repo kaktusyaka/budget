@@ -5,9 +5,10 @@
     = stylesheet_link_tag    'application', media: 'all'
     = csrf_meta_tags
   %body
-    %nav.navbar.navbar-default
-      .container-fluid
-        = render 'layouts/navbar'
+    - if user_signed_in?
+      %nav.navbar.navbar-default
+        .container-fluid
+          = render 'layouts/navbar'
 
     #container
       #user_notices
