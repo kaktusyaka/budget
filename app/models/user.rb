@@ -39,4 +39,8 @@ class User < ActiveRecord::Base
   def self.temp_email( uid, provider )
     "#{TEMP_EMAIL_PREFIX}-#{uid}-#{provider}.com"
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
