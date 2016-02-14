@@ -1,8 +1,5 @@
-.col-sm-offset-3
-  = search_form_for @q, class: "form-inline" do |f|
-    .form-group
-      = f.label :category_name_or_description_cont, 'Search by Category or Description', class: 'control-label'
-      = f.text_field :category_name_or_description_cont, class: 'form-control'
+= content_for :transactions_search do
+  = render "search"
 
 .col-md-12
   %h1 Listing Transactions
