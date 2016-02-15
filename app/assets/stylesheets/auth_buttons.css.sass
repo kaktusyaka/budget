@@ -1,0 +1,86 @@
+.btn-auth
+  width: 155px
+  position: relative
+  display: inline-block
+  height: 22px
+  padding: 0 1em
+  border: 1px solid #999
+  border-radius: 2px
+  margin: 0
+  text-align: left
+  text-decoration: none
+  font-size: 14px
+  line-height: 22px
+  white-space: nowrap
+  cursor: pointer
+  color: #222
+  background: #fff
+  -webkit-box-sizing: content-box
+  -moz-box-sizing: content-box
+  box-sizing: content-box
+  /* iOS
+  -webkit-appearance: none
+  /* 1
+  /* IE6/7 hacks
+  *overflow: visible
+  /* 2
+  *display: inline
+  /* 3
+  *zoom: 1
+  /* 3
+  &:hover, &:focus, &:active
+    color: #222
+    text-decoration: none
+  &:before
+    content: ""
+    float: left
+    width: 22px
+    height: 22px
+    background: asset-url("auth-icons.png") no-repeat 99px 99px
+  &::-moz-focus-inner
+    border: 0
+    padding: 0
+
+.omn-btn-facebook, .omn-btn-twitter
+  border-color: #d4d4d4
+  background: #ececec
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec))
+  background-image: -webkit-linear-gradient(#f4f4f4, #ececec)
+  background-image: -moz-linear-gradient(#f4f4f4, #ececec)
+  background-image: -ms-linear-gradient(#f4f4f4, #ececec)
+  background-image: -o-linear-gradient(#f4f4f4, #ececec)
+  background-image: linear-gradient(#f4f4f4, #ececec)
+  &:hover, &:focus
+    border-color: #518cc6
+    border-bottom-color: #2a65a0
+    color: #fff
+    background-color: #599bdc
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#599bdc), to(#3072b3))
+    background-image: -webkit-linear-gradient(#599bdc, #3072b3)
+    background-image: -moz-linear-gradient(#599bdc, #3072b3)
+    background-image: -ms-linear-gradient(#599bdc, #3072b3)
+    background-image: -o-linear-gradient(#599bdc, #3072b3)
+    background-image: linear-gradient(#599bdc, #3072b3)
+  &:active
+    border-color: #2A65A0
+    border-bottom-color: #518CC6
+    color: #fff
+    background: #3072B3
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#3072b3), to(#599bdc))
+    background: -webkit-linear-gradient(#3072b3, #599bdc)
+    background: -moz-linear-gradient(#3072b3, #599bdc)
+    background: -ms-linear-gradient(#3072b3, #599bdc)
+    background: -o-linear-gradient(#3072b3, #599bdc)
+    background: linear-gradient(#3072b3, #599bdc)
+.omn-btn-twitter
+  &:before
+    margin: 0 0.6em 0 -0.6em
+    background-position: -19px 3px
+  &:hover:before, &:focus:before, &:active:before
+    background-position: -66px 3px
+.omn-btn-facebook
+  &:before
+    margin: 0 0.6em 0 -0.6em
+    background-position: 3px
+  &:hover:before, &:focus:before, &:active:before
+    background-position: -43px 3px

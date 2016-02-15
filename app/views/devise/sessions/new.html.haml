@@ -1,21 +1,21 @@
-%h2.col-sm-offset-2 Sign in
-= form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal' } do |f|
-  .form-group
-    = f.label :email, class: 'col-sm-2 control-label'
-    .col-sm-3
-      = f.email_field :email, autofocus: true, class: 'form-control'
-  .form-group
-    = f.label :password, class: 'col-sm-2 control-label'
-    .col-sm-3
-      = f.password_field :password, autocomplete: 'off', class: 'form-control'
-  - if devise_mapping.rememberable?
-    .form-group
-      .col-sm-offset-2.col-sm-3
-        .checkbox
-          %label
+#main-auth
+  #content
+    .profile_header
+      %h1
+        = "Sign in"
+        %small= "with budget, twitter or facebook"
+    .form-devise
+      = form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'shift-left' } do |f|
+        %div
+          = f.label :email
+          = f.email_field :email, autofocus: true
+        %div
+          = f.label :password
+          = f.password_field :password, autocomplete: 'off'
+        - if devise_mapping.rememberable?
+          .form-type-checkbox
             = f.check_box :remember_me
-            = 'Remember me'
-  .form-group
-    .col-sm-offset-2.col-sm-3
-      = f.submit 'Sign in', class: 'btn btn-default'
-= render "devise/shared/links"
+            %label{ for: :remember_me }= "Remember me"
+        %div
+          = f.submit "Sign in", class: 'btn'
+        = render "devise/shared/links"
