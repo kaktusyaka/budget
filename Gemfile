@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.3.0'
+gem 'airbrake', '~> 5.0'
 gem 'kaminari'
 gem 'pg'
 gem 'rails', '4.2.5'
