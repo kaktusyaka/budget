@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:edit, :update, :destroy]
-  before_action :set_transactions, only: [:set_transaction, :create, :index]
+  before_action :set_transactions, only: [:create, :index]
 
   def index
     @q = @transactions.search(params[:q])
@@ -46,7 +46,7 @@ class TransactionsController < ApplicationController
     end
 
     def set_transaction
-      @transaction = @transactions.find(params[:id])
+      @transaction = set_transactions.find(params[:id])
     end
 
     def transaction_params
