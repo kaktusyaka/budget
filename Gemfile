@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 ruby '2.3.0'
 gem 'kaminari'
-gem 'gon'
 gem 'pg'
 gem 'rails', '4.2.5'
 gem 'ransack'
@@ -17,6 +16,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap-wysihtml5-rails'
 gem 'bootstrap-datepicker-rails'
 gem "font-awesome-rails"
+gem 'gon'
 gem 'sass-rails', '~> 5.0'
 gem "select2-rails"
 # Use Uglifier as compressor for JavaScript assets

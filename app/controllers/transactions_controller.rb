@@ -1,10 +1,13 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:edit, :update, :destroy]
+  before_action :set_transactions, only: [:set_transaction, :create, :index]
 
   def index
-    @q = current_user.transactions.search(params[:q])
+    @q = @transactions.search(params[:q])
     @q.sorts = ['date desc'] if @q.sorts.empty?
     @transactions = @q.result.includes(:category).page(params[:page])
+    gon.expenditures_by_category = @transactions.this_month.map {|t| [t.category.name, t.amount.to_f]}
+    gon.expenditures_by_category.unshift(['Categoty Name', 'Amount'])
   end
 
   def new
@@ -15,7 +18,7 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    @transaction = current_user.transactions.build(transaction_params)
+    @transaction = @transactions.build(transaction_params)
 
     if @transaction.save
       redirect_to transactions_url, notice: 'Transaction was successfully created.'
@@ -38,8 +41,12 @@ class TransactionsController < ApplicationController
   end
 
   private
+    def set_transactions
+      @transactions = current_user.transactions
+    end
+
     def set_transaction
-      @transaction = current_user.transactions.find(params[:id])
+      @transaction = @transactions.find(params[:id])
     end
 
     def transaction_params
