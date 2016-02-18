@@ -2,7 +2,7 @@ class Transaction < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
 
-  scope :this_month, ->{ where(created_at: Time.now.beginning_of_month..Time.now) }
+  scope :expenditures_this_month, ->{ where(created_at: Time.now.beginning_of_month..Time.now, income: false) }
 
   with_options presence: true do |p|
     p.validates :date, timeliness: { type: :date }
