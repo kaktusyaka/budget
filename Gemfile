@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
+ruby '2.3.0'
 gem 'kaminari'
+gem 'gon'
 gem 'pg'
 gem 'rails', '4.2.5'
 gem 'ransack'
