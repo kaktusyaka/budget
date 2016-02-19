@@ -12,3 +12,6 @@ public/system/*
 config/database.yml
 uploads/*
 .byebug_history
+
+# Ignore application configuration
+/config/application.yml

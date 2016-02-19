@@ -12,8 +12,8 @@ Airbrake.configure do |c|
   # project_key navigate to your project's General Settings and copy the values
   # from the right sidebar.
   # https://github.com/airbrake/airbrake-ruby#project_id--project_key
-  c.project_id = "120636"   #ENV['AIRBRAKE_PROJECT_ID']
-  c.project_key = "3c1c3e9ed682553f6bdbb2b22fc21937"      #ENV['AIRBRAKE_API_KEY']
+  c.project_id = Figaro.env.airbrake_project_id
+  c.project_key = Figaro.env.airbrake_api_key
 
   # Configures the root directory of your project. Expects a String or a
   # Pathname, which represents the path to your project. Providing this option
