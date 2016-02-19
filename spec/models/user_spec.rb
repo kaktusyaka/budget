@@ -13,7 +13,7 @@ end
 describe User do
   it { should have_many(:authorizations).dependent(:destroy) }
   it { should have_many(:categories).dependent(:destroy) }
-  it { should have_many(:transactions).dependent(:destroy) }
+  it { should have_many(:transactions) }
 
  context 'Validations' do
     it { should validate_presence_of(:first_name) }
