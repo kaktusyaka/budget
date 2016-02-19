@@ -30,8 +30,12 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category.destroy
-    redirect_to categories_url, notice: "Category was successfully destroyed."
+    if @category.destroy
+      redirect_to categories_url, notice: "Category was successfully destroyed."
+    else
+      flash[:error] = @category.errors.full_messages.to_sentence
+      redirect_to categories_url
+    end
   end
 
   def sort
