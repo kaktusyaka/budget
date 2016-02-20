@@ -6,7 +6,8 @@ class TransactionsController < ApplicationController
     @q = @transactions.search(params[:q])
     @q.sorts = ['date desc'] if @q.sorts.empty?
     @transactions = @q.result.includes(:category).page(params[:page])
-    gon.expenditures_by_category = @transactions.expenditures_this_month.map {|t| [t.category.name, t.amount.to_f]}
+
+    gon.expenditures_by_category = Transaction.expenditures_this_month(@transactions).to_a.map{ |t| [t.first, t.last.to_f]}
     gon.expenditures_by_category.unshift(['Categoty Name', 'Amount'])
   end
 
