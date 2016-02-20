@@ -16,7 +16,6 @@
   @module 'GoogleChart', ->
     @init =->
       drawChart = ->
-        console.log(gon.expenditures_by_category)
         data = google.visualization.arrayToDataTable(gon.expenditures_by_category)
         options =
           title: 'Expenditures by category for current month'
