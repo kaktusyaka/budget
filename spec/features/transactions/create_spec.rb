@@ -24,6 +24,7 @@ feature '#new/#create' do
   end
 
   scenario 'user can not create invalid transaction' do
+    fill_in 'Date', with: ""
     click_button 'Submit'
     page.should have_content("5 errors prohibited this transaction from being saved")
     page.should have_content("Date can't be blank")
