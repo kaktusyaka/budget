@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
 
   def index
     @q = @transactions.search(params[:q])
-    @q.sorts = ['date desc'] if @q.sorts.empty?
+    @q.sorts = ['created_at desc'] if @q.sorts.empty?
     @transactions = @q.result.includes(:category).page(params[:page])
 
     gon.expenditures_by_category = Transaction.expenditures_this_month(@transactions).to_a.map{ |t| [t.first, t.last.to_f]}
