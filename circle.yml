@@ -1,0 +1,11 @@
+machine:
+  ruby:
+    version: 2.3.0
+database:
+  override:
+    - cp config/database.ci.yml config/database.yml
+    - bundle exec rake db:create db:schema:load --trace
+test:
+  override:
+    - bundle exec rspec ./spec --color --profile
+

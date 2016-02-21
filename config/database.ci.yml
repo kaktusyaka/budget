@@ -1,0 +1,7 @@
+test:
+  adapter: postgresql
+  host: localhost
+  password:
+  database: circle_test
+  username: ubuntu
+  encoding: utf8
