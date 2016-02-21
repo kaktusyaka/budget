@@ -41,10 +41,10 @@ Airbrake.configure do |c|
   # environments.
   # NOTE: This option *does not* work if you don't set the 'environment' option.
   # https://github.com/airbrake/airbrake-ruby#ignore_environments
-  c.ignore_environments = %w(test)
+  c.ignore_environments = %w(test development)
 end
 
 # If Airbrake doesn't send any expected exceptions, we suggest to uncomment the
 # line below. It might simplify debugging of background Airbrake workers, which
 # can silently die.
-# Thread.abort_on_exception = ['test', 'development'].include?(Rails.env)
+#Thread.abort_on_exception = ['test', 'development'].include?(Rails.env)
