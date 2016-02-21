@@ -1,5 +1,3 @@
-//= require_tree ../../../vendor/assets/javascripts/charts/.
-
 @module 'Transactions', ->
   @module 'Form', ->
     @init =->
