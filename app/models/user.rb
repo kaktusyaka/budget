@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, presence: true, length: { maximum: 255 }
   has_many :authorizations, dependent: :destroy
   has_many :categories, dependent: :destroy
-  has_many :transactions
+  has_many :transactions, through: :categories
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable

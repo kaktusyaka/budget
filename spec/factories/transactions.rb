@@ -4,7 +4,6 @@ FactoryGirl.define do
     date        { Faker::Date.backward(1) }
     amount      { Faker::Number.decimal(1) }
     description { Faker::Lorem.paragraph }
-    user
     category
   end
 
