@@ -25,6 +25,17 @@
       google.charts.load 'current', packages: [ 'corechart' ]
       google.charts.setOnLoadCallback drawChart
 
+  @module 'Autocomplete', ->
+    @init = (elem, data) ->
+      $(elem).autocomplete(
+        source: data
+        minLength: 0
+        scroll: true
+      ).focus ->
+        $(@).autocomplete "search", ""
+        return
+
 $ ->
   Transactions.Form.init() if $('#transaction_form').length
   Transactions.GoogleChart.init() if $('#piechart_3d').length
+  Transactions.Autocomplete.init('#transaction_category_name', gon.user_categories) if $('#transaction_category_name').length

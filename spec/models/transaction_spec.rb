@@ -6,7 +6,7 @@ describe Transaction do
   context 'Validations' do
     it { should validate_presence_of(:date) }
     it { should validate_presence_of(:amount) }
-    it { should validate_presence_of(:category) }
+    it { should validate_presence_of(:category_name) }
     it { should validate_length_of(:description).is_at_most(65536) }
     it { should validate_numericality_of(:amount).is_greater_than(0) }
     it { should allow_value( Date.today ).for(:date) }

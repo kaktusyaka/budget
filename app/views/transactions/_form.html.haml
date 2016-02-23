@@ -8,9 +8,13 @@
         - @transaction.errors.full_messages.each do |message|
           %li= message
   .form-group
-    = f.label :category_id, class: 'col-sm-2 control-label'
+    = f.label :category_name, class: 'col-sm-2 control-label'
     .col-sm-3
-      = f.select(:category_id, current_user.categories.collect {|c| [c.name, c.id]}, {include_blank: true}, {class: 'form-control', id: 'transaction_categories'})
+      = f.text_field :category_name, value: (f.object.category.name if f.object.category_id), class: 'form-control'
+  -#.form-group
+    -#= f.label :category_id, class: 'col-sm-2 control-label'
+    -#.col-sm-3
+      -#= f.select(:category_id, current_user.categories.collect {|c| [c.name, c.id]}, {include_blank: true}, {class: 'form-control', id: 'transaction_categories'})
   .form-group
     = f.label :income, "Type", class: 'col-sm-2 control-label'
     .col-sm-3
