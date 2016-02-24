@@ -2,6 +2,8 @@ class Transaction < ActiveRecord::Base
   belongs_to :category
   attr_accessor :category_name, :user_id
 
+  scope :income_amount,       ->{ where(income: true) }
+  scope :expenditures_amount, ->{ where(income: false) }
 
   with_options presence: true do |p|
     p.validates :date, timeliness: { type: :date }
@@ -18,6 +20,10 @@ class Transaction < ActiveRecord::Base
                     .group('categories.name')
                     .sum(:amount).to_a
                     .map{ |t| [t.first, t.last.to_f]}
+  end
+
+  def self.current_balance
+    all.income_amount.sum(:amount) - all.expenditures_amount.sum(:amount)
   end
 
   private
