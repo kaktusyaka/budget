@@ -1,19 +1,25 @@
 %h2.col-sm-offset-2
   Edit #{resource_name.to_s.humanize}
-= form_for resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal' }  do |f|
+= form_for resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, method: :put, class: 'form-horizontal' }  do |f|
   = devise_error_messages!
+  .form-group
+    = image_tag f.object.file_url(:thumb).to_s
+  .form-group
+    = f.label :file, class: 'col-sm-2 control-label'
+    .col-sm-3
+      = f.file_field :file, class: 'form-control'
   .form-group
     = f.label :first_name, class: 'col-sm-2 control-label'
     .col-sm-3
-      = f.text_field :first_name, autofocus: true, class: 'form-control'
+      = f.text_field :first_name, class: 'form-control'
   .form-group
     = f.label :last_name, class: 'col-sm-2 control-label'
     .col-sm-3
-      = f.text_field :last_name, autofocus: true, class: 'form-control'
+      = f.text_field :last_name, class: 'form-control'
   .form-group
     = f.label :email, class: 'col-sm-2 control-label'
     .col-sm-3
-      = f.email_field :email, autofocus: true, class: 'form-control'
+      = f.email_field :email, class: 'form-control'
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
