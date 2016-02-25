@@ -9,6 +9,7 @@ class TransactionsController < ApplicationController
     @transactions = @q.result.includes(:category).page(params[:page])
 
     gon.expenditures_by_category = Transaction.expenditures_this_month(@transactions).unshift(['Categoty Name', 'Amount'])
+    gon.balances_for_chart = @transactions.weekly_balances.unshift(['Week', 'Balance'])
 
     @current_balance = @transactions.current_balance
   end
