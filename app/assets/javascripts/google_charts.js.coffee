@@ -16,7 +16,7 @@
         vAxis: title: 'Amount'
         hAxis: title: 'Weeks'
         seriesType: 'bars'
-        series: 5: type: 'line'
+        series: 1: type: 'line'
       chart = new (google.visualization.ComboChart)(document.getElementById('chart_div'))
       chart.draw data, options
       return

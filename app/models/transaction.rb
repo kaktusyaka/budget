@@ -34,7 +34,7 @@ class Transaction < ActiveRecord::Base
     while date < Date.today.end_of_month do
       trs = all.where(date: date..date + 6.days)
       dif = trs.current_balance.to_f
-      data << [(date + 6.days).strftime("%d.%m"), (dif + balance)] unless dif.zero?
+      data << [(date + 6.days).strftime("%d.%m"), (dif + balance), (dif + balance)] unless dif.zero?
       balance += dif
       date = date + 7.days
     end
