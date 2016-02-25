@@ -1,7 +1,7 @@
 @module 'Transactions', ->
   @module 'Form', ->
     @init =->
-      $('#transaction_categories').select2 theme: 'bootstrap'
+      $(".datatable table").DataTable
 
       $('.datepicker').datepicker
         format: 'dd/mm/yyyy'

@@ -3,10 +3,8 @@ class TransactionsController < ApplicationController
   before_action :set_gon_category_names, only: [:new, :edit, :create, :update]
 
   def index
-    @transactions = current_user.transactions
-    @q = @transactions.search(params[:q])
-    @q.sorts = ['date desc'] if @q.sorts.empty?
-    @transactions = @q.result.includes(:category).page(params[:page])
+    @transactions = current_user.transactions.includes(:category)
+    #@transactions = @transactions.page(params[:page])
 
     gon.expenditures_by_category = Transaction.expenditures_this_month(@transactions).unshift(['Categoty Name', 'Amount'])
     gon.balances_for_chart = @transactions.weekly_balances.unshift(['Week', 'Balance', 'Average'])
