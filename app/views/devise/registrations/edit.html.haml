@@ -5,7 +5,7 @@
   .form-group
     = image_tag f.object.photo.try(:file_url, :thumb)
   .form-group
-    = f.fields_for :photo do |p|
+    = f.fields_for :photo_attributes do |p|
       = p.label :file, class: 'col-sm-2 control-label'
       .col-sm-3
         = p.file_field :file, class: 'form-control'
