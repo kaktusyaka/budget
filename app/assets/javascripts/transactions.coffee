@@ -1,8 +1,6 @@
 @module 'Transactions', ->
   @module 'Form', ->
     @init =->
-      $(".datatable table").DataTable
-
       $('.datepicker').datepicker
         format: 'dd/mm/yyyy'
         weekStart: 1
@@ -22,7 +20,12 @@
         $(@).autocomplete "search", ""
         return
 
+  @module 'Index', ->
+    @init =->
+      $(".datatable table").DataTable()
+
 $ ->
   Transactions.Form.init() if $('#transaction_form').length
+  Transactions.Index.init() if $('.datatable').length
   GoogleChart.init() if $('#piechart_3d').length
   Transactions.Autocomplete.init('#transaction_category_name', gon.user_categories) if $('#transaction_category_name').length

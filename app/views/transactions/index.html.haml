@@ -9,7 +9,7 @@
           %th= "Date"
           %th= "Amount"
           %th= "Description"
-          %th{ colspan: '3'} Action
+          %th= "Action"
       %tbody
         = render partial: 'transaction', collection: @transactions
       - if @transactions.blank?
