@@ -9,6 +9,7 @@ chromedriver.log
 tmp/**/*
 public/stylesheets/*
 public/system/*
+public/uploads/*
 config/database.yml
 uploads/*
 .byebug_history

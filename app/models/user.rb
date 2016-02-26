@@ -5,11 +5,12 @@ class User < ActiveRecord::Base
   has_many :authorizations, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :transactions, through: :categories
+  has_one  :photo, as: :imageable, dependent: :destroy
 
-  # Include default devise modules. Others available are:
-  # :lockable, :timeoutable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
+
+  accepts_nested_attributes_for :photo, allow_destroy: true
 
   def self.from_omniauth auth, current_user = nil
     authorization = Authorization.from_omniauth auth

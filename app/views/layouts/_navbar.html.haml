@@ -16,7 +16,10 @@
       = link_to "#", class: "dropdown-toggle user-dropdown", "aria-expanded": "false", "aria-haspopup": "true", "data-toggle":"dropdown", role: "button" do
         .row
           .col-xs-3
-            %img.profile-pic.media-object.pull-left.img-rounded{"data-name": current_user.first_name}
+            - if current_user.photo
+              = image_tag current_user.photo.file_url(:small), class: 'pull-left img-rounded'
+            - else
+              = image_tag "", class: 'profile-pic media-object pull-left img-rounded', "data-name": current_user.first_name
           .col-xs-9
             = current_user.full_name
             %br
