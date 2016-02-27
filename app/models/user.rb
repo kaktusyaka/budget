@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
-  accepts_nested_attributes_for :photo, allow_destroy: true
+  accepts_nested_attributes_for :photo, allow_destroy: true, reject_if: ->(attr){ attr['file'].blank? and attr['remote_file_url'].blank? }
 
   def self.from_omniauth auth, current_user = nil
     authorization = Authorization.from_omniauth auth

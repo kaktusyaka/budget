@@ -1,14 +1,24 @@
 %h2.col-sm-offset-2
   Edit #{resource_name.to_s.humanize}
-= form_for resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, method: :put, class: 'form-horizontal' }  do |f|
+= form_for resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true, method: :put, class: 'form-horizontal', id: 'edit_user_form' }  do |f|
   = devise_error_messages!
   .form-group
     = image_tag f.object.photo.try(:file_url, :thumb)
-  .form-group
-    = f.fields_for :photo, current_user.photo.blank? ? current_user.build_photo : current_user.photo do |p|
+  = f.fields_for :photo, current_user.photo.blank? ? current_user.build_photo : current_user.photo do |p|
+    .form-group
       = p.label :file, "Photo", class: 'col-sm-2 control-label'
       .col-sm-3
         = p.file_field :file, class: 'form-control'
+      .col-sm-3
+        = link_to "#", title: "remote photo url", remote: true, class: 'toggle_photo' do
+          %span.glyphicon.glyphicon.glyphicon-link
+    .form-group.hidden
+      = p.label :remote_file_url, "Remote photo url", class: 'col-sm-2 control-label'
+      .col-sm-3
+        = p.text_field :remote_file_url, class: 'form-control'
+      .col-sm-3
+        = link_to "#", title: "load photo from your device", remote: true, class: 'toggle_photo' do
+          %span.glyphicon.glyphicon-folder-open
   .form-group
     = f.label :first_name, class: 'col-sm-2 control-label'
     .col-sm-3

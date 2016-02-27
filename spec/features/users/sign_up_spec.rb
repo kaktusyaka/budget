@@ -5,7 +5,6 @@ feature 'Sign_up', js: true do
     visit '/users/sign_up'
     expect(page).to have_content 'Sign in with Twitter'
     click_link 'Sign in with Twitter'
-    #if has_css?("#oauth_for")
     within("#oauth_form") do
       fill_in 'username_or_email', with: 'nadya.peschanska@mail.ru'
       fill_in 'password', with: 'test11111'

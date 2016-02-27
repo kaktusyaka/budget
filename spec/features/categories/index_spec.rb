@@ -5,9 +5,9 @@ feature 'GET #index' do
   given(:user_2) { create(:user) }
 
   background {
-    @category1 = create(:category, user: user_1)
-    @category2 = create(:category, user: user_1)
-    @category3 = create(:category, user: user_2)
+    @category1 = create(:category, name: "Food", user: user_1)
+    @category2 = create(:category, name: "House", user: user_1)
+    @category3 = create(:category, name: "Clothes", user: user_2)
   }
 
   scenario 'user can see his categories' do
