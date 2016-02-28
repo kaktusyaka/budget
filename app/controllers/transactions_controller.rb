@@ -3,13 +3,18 @@ class TransactionsController < ApplicationController
   before_action :set_gon_category_names, only: [:new, :edit, :create, :update]
 
   def index
-    @transactions = current_user.transactions.includes(:category)
-    #@transactions = @transactions.page(params[:page])
 
-    gon.expenditures_by_category = Transaction.expenditures_this_month(@transactions).unshift(['Categoty Name', 'Amount'])
-    gon.balances_for_chart = @transactions.weekly_balances.unshift(['Week', 'Balance', 'Average'])
+    respond_to do |format|
+      format.html do
+        @transactions = current_user.transactions.includes(:category)
+        @current_balance = @transactions.current_balance
 
-    @current_balance = @transactions.current_balance
+        gon.expenditures_by_category = Transaction.expenditures_this_month(@transactions).unshift(['Categoty Name', 'Amount'])
+        gon.balances_for_chart = @transactions.weekly_balances.unshift(['Week', 'Balance', 'Average'])
+      end
+      format.json { render json: TransactionsDatatable.new(view_context, current_user) }
+    end
+
   end
 
   def new

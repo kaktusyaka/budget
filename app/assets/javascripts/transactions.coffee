@@ -22,7 +22,15 @@
 
   @module 'Index', ->
     @init =->
-      $(".datatable table").DataTable()
+      $(".datatable table").DataTable({
+        aLengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, "All"]],
+        order: [[2, 'desc']],
+        columnDefs: [{ orderable: false, targets: [5] }],
+        processing: true,
+        serverSide: true,
+        ajax:
+          url: $(@).data('source')
+      })
 
 $ ->
   Transactions.Form.init() if $('#transaction_form').length

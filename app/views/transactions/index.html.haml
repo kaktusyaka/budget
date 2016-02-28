@@ -1,7 +1,7 @@
 .col-md-12
   %h1 Listing Transactions
   .datatable
-    %table.table.table-striped.table-bordered.table-hover
+    %table.table.table-striped.table-bordered.table-hover{ :'data-source' => transactions_url(format: :json) }
       %thead
         %tr
           %th= "Category"
@@ -11,15 +11,9 @@
           %th= "Description"
           %th= "Action"
       %tbody
-        = render partial: 'transaction', collection: @transactions
-      - if @transactions.blank?
-        %tr
-          %td.text-center{ colspan: 6 }= 'No transactions'
   %br
     = link_to 'New Transaction', new_transaction_path
 
--#.col-sm-offset-2
-  -#= paginate @transactions
 .col-md-12
   %h2= "Current balance: #{@current_balance}"
 .col-md-12
