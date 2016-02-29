@@ -39,12 +39,11 @@ class TransactionsDatatable
   end
 
   def fetch_transactions
-    transactions = set_transactions.order("#{sort_column} #{sort_direction}")
-    transactions = transactions.page(page).per(per_page)
+    transactions = set_transactions.reorder("#{sort_column} #{sort_direction}")
     if params[:search][:value].present?
       transactions = transactions.where("categories.name ilike :search or description ilike :search", search: "%#{params[:search][:value]}%")
     end
-    transactions
+    transactions.page(page).per(per_page)
   end
 
   def page
