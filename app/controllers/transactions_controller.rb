@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :find_transaction, only: [:edit, :update, :destroy]
-  before_action :set_gon_category_names, only: [:new, :edit, :create, :update]
+  before_action :set_gon_category_names, only: [:edit, :create, :update, :index]
   respond_to :html, :json
 
 
@@ -8,6 +8,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       format.html do
+        @transaction = Transaction.new
         @transactions = current_user.transactions.includes(:category)
         @current_balance = @transactions.current_balance
 
@@ -17,10 +18,6 @@ class TransactionsController < ApplicationController
       format.json { render json: TransactionsDatatable.new(view_context, current_user) }
     end
 
-  end
-
-  def new
-    @transaction = Transaction.new
   end
 
   def edit

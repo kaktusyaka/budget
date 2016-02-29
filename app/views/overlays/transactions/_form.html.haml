@@ -1,0 +1,49 @@
+#transactions-form.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "athens-details-form", role: "dialog", tabindex: "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+        %h4.modal-title New  Transaction
+      = form_for @transaction, url: transactions_path(), html: { id: 'transaction_form', class: 'form-horizontal' } do |f|
+        .modal-body
+          - if @transaction.errors.any?
+            #error_explanation
+              %h2
+                = pluralize(@transaction.errors.count, "error")
+                prohibited this transaction from being saved:
+              %ul
+                - @transaction.errors.full_messages.each do |message|
+                  %li= message
+          .form-group
+            = f.label :category_name, class: 'col-sm-3 control-label'
+            .col-sm-5
+              = f.text_field :category_name, value: (f.object.category.name if f.object.category_id), class: 'form-control'
+          .form-group
+            = f.label :income, "Type", class: 'col-sm-3 control-label'
+            .col-sm-5
+              =f.radio_button :income, false
+              = label :expenditure, 'Expenditure'
+              %br
+              = f.radio_button :income, true
+              = label :income, 'Income'
+          .form-group
+            = f.label :date, class: 'col-sm-3 control-label'
+            .col-sm-5
+              = f.text_field :date, value: (f.object.date ? f.object.date : Date.today).strftime('%d/%m/%Y'),
+                                    placeholder: "dd/mm/yyyy",
+                                    'data-behaviour' => 'datepicker',
+                                    class: 'form-control datepicker'
+          .form-group
+            = f.label :amount, class: 'col-sm-3 control-label'
+            .col-sm-5
+              = f.number_field :amount, min: 0.01, step: 0.01, class: 'form-control'
+          .form-group
+            = f.label :description, class: 'col-sm-3 control-label'
+            .col-sm-8
+              = f.text_area :description, class: 'form-control wysihtml5'
+
+
+        .modal-footer
+          .pull-right
+            = f.submit "Submit", class: 'btn btn-default'
+

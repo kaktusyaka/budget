@@ -22,6 +22,8 @@
         source: data
         minLength: 0
         scroll: true
+        close: (event, ui) ->
+          $("#transaction_amount").focus()
       ).focus ->
         $(@).autocomplete "search", ""
         return
