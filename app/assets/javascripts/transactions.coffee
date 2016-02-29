@@ -3,6 +3,7 @@
     @init =->
       table = initDatatable()
       initDelete(table)
+      GoogleChart.init() if $('#piechart_3d').length
 
     initDatatable = ->
       $(".datatable table").DataTable({
@@ -16,7 +17,7 @@
       })
 
     initDelete = (table) ->
-      $(".datatable#transactions").on 'click', "a.delete-transaction-js", (e) ->
+      $("body .datatable").on 'click', "a.delete-transaction-js", (e) ->
         e.preventDefault()
         self = $(@)
         if confirm('Are you sure you want to delete this Transaction?')
@@ -32,5 +33,4 @@
 
 
 $ ->
-  Transactions.Index.init() if $('.datatable#transactions').length
-  GoogleChart.init() if $('#piechart_3d').length
+  Transactions.Index.init() if $('.transactions').length

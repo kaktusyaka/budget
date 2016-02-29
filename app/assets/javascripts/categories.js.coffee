@@ -7,4 +7,4 @@
           $.post($(this).data('update-url'), $(this).sortable('serialize'))
 
 $ ->
-  Categories.IndexSortable.init() if $('#sortable').length
+  Categories.IndexSortable.init() if $('#categories-index').length
