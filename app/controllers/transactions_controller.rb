@@ -1,6 +1,8 @@
 class TransactionsController < ApplicationController
   before_action :find_transaction, only: [:edit, :update, :destroy]
   before_action :set_gon_category_names, only: [:new, :edit, :create, :update]
+  respond_to :html, :json
+
 
   def index
 
@@ -45,8 +47,11 @@ class TransactionsController < ApplicationController
   end
 
   def destroy
-    @transaction.destroy
-    redirect_to transactions_url, notice: 'Transaction was successfully destroyed.'
+    if @transaction.destroy
+      render json: { success: "Transaction was successfully destroyed." }, status: 200
+    else
+      render json: { error: @transaction.errors.full_messages}, status: 422
+    end
   end
 
   private
