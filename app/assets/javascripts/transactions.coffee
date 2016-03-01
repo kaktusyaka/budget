@@ -33,4 +33,4 @@
 
 
 $ ->
-  Transactions.Index.init() if $('#transactions-index').length
+  Transactions.Index.init() if $('body#transactions-index').length

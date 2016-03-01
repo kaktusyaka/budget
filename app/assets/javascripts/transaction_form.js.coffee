@@ -1,9 +1,7 @@
 @module 'Transactions', ->
   @module 'Form', ->
     @init =->
-      initDatepicker()
-      initWysiwygEditor()
-      initAutocomplete('#transaction_category_name', gon.user_categories)
+      initTransactionLinks()
 
     initDatepicker = ->
       $('.datepicker').datepicker
@@ -28,5 +26,17 @@
         $(@).autocomplete "search", ""
         return
 
+    initTransactionLinks = ->
+      $('body').on 'click', 'a.open-transaction-js', (e) ->
+        e.preventDefault()
+        $('#transactions-form').modal('show')
+        $($(@).data('remote-target')).load $(@).attr('href'), ->
+          initDatepicker()
+          initWysiwygEditor()
+          initAutocomplete('#transaction_category_name', gon.user_categories)
+
+      $('#transactions-form').on 'hidden.bs.modal', (e) ->
+        $(@).find('.modal-content').empty()
+
 $ ->
-  Transactions.Form.init() if $('#transaction_form').length
+  Transactions.Form.init() if $('#transactions-form').length
