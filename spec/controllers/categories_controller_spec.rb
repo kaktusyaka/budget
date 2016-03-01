@@ -3,7 +3,7 @@ require 'rails_helper'
 describe CategoriesController do
   let(:user)     { create(:user) }
   before         { sign_in(user) }
-  let(:category) { create(:category, user_id: user.id) }
+  let(:category) { create(:category, name: "Kids", user_id: user.id) }
 
   describe "GET /index" do
     context "with success" do

@@ -11,8 +11,8 @@ def login(user)
 end
 
 def create_two_categories user
-  create(:category, user: user)
-  create(:category, user: user)
+  create(:category, name: "Food", user: user)
+  create(:category, name: "Clothes", user: user)
 end
 
 def fill_in_wysihtml5(labl, opts={})
