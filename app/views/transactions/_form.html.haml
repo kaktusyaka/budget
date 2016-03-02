@@ -4,7 +4,7 @@
     = @transaction.new_record? ? 'New' : 'Edit'
     %span.semi-bold Transaction
 
-= form_for @transaction, url: transactions_path(), html: { class: 'form-horizontal' } do |f|
+= form_for @transaction, html: { class: 'form-horizontal' } do |f|
   .modal-body
     - if @transaction.errors.any?
       #error_explanation

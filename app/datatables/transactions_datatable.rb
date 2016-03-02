@@ -29,7 +29,7 @@ class TransactionsDatatable
         transaction.date.strftime('%d/%m/%Y'),
         number_to_currency( transaction.amount ),
         raw( transaction.description ),
-        "#{link_to( 'Edit', edit_transaction_path(transaction))} #{link_to( 'Destroy', transaction_path(transaction, format: :json), class: 'delete-transaction-js' )}"
+        "#{link_to( 'Edit', edit_transaction_path(transaction), data: { :'remote-target' => '#transactions-form .modal-content' }, class: 'open-transaction-js', title: 'Edit')} #{link_to( 'Destroy', transaction_path(transaction, format: :json), class: 'delete-transaction-js' )}"
       ]
     end
   end
