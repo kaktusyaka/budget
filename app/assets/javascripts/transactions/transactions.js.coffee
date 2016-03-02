@@ -34,3 +34,4 @@
 
 $ ->
   Transactions.Index.init() if $('body#transactions-index').length
+

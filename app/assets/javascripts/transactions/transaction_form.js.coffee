@@ -40,3 +40,4 @@
 
 $ ->
   Transactions.Form.init() if $('#transactions-form').length
+
