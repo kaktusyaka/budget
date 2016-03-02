@@ -5,7 +5,8 @@ feature '#new/#create' do
     @user = create(:user)
     login(@user)
     create_two_categories (@user)
-    visit new_transaction_path
+    visit transactions_path
+    click_link "New Transaction"
     expect(page).to have_content "New Transaction"
   }
 
@@ -21,6 +22,7 @@ feature '#new/#create' do
     click_button 'Submit'
 
     page.should have_content("Transaction was successfully created")
+    page.should have_selector(".datatable table tbody tr td", text: @user.categories.last.name)
     @user.transactions.count.should eq(1)
   end
 
