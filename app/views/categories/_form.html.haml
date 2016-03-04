@@ -1,6 +1,6 @@
 = form_for @category, html: { class: 'form-horizontal' } do |f|
-  - if @category.errors.any?
-    #error_explanation
+  #error_explanation
+    - if @category.errors.any?
       %h2
         = pluralize(@category.errors.count, "error")
         prohibited this category from being saved:

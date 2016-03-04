@@ -4,6 +4,7 @@
       table = initDatatable()
       initDelete(table)
       GoogleChart.init()
+      submitTransactionForm(table) if $('#transactions-form').length
 
     initDatatable = ->
       $(".datatable table").DataTable({
@@ -25,12 +26,41 @@
             method: 'DELETE'
             url: self.attr('href')
             success: (data) ->
-              Notifications.info(data.success)
+              Notifications.success(data.success)
               table.ajax.reload()
             error: (xhr, ajaxOptions, thrownError) ->
               response = $.parseJSON(xhr.responseText)
-              Notifications.info(response.error)
+              Notifications.error(response.error)
 
+    # Allow Submit New Transaction form
+    submitTransactionForm = (table)->
+      $('#transactions-form').on 'submit', 'form', (e) ->
+        e.preventDefault()
+        self = $(@)
+
+        $.ajax
+          url: self.attr('action')
+          dataType: 'JSON'
+          method: 'POST'
+          data: self.serialize()
+          success: (data) ->
+            $('#transactions-form').modal('hide')
+            Notifications.success(data.success)
+            table.ajax.reload()
+          error: (xhr, ajaxOptions, thrownError) ->
+            $('#transactions-form').find('input, textarea').removeClass('border-danger')
+            $('#transactions-form').find('small').remove()
+
+            errors = $.parseJSON(xhr.responseText).errors
+            errorMessage = []
+            $.each errors, (key, val) ->
+              $("#transaction_#{ key }").addClass('border-danger').before("<small class='text-danger'>#{ val.join(", ") }</small>")
+              i = 0
+              while i < val.length
+                errorMessage.push( key.charAt(0).toUpperCase() + key.slice(1) + ": " + val[i] )
+                i++
+              return
+            Notifications.error(errorMessage, '#error_explanation')
 
 $ ->
   Transactions.Index.init() if $('body#transactions-index').length

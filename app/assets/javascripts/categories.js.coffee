@@ -20,10 +20,10 @@
             url: self.attr('href')
             success: (data) ->
               self.closest("li").remove()
-              Notifications.info(data.success)
+              Notifications.success(data.success)
             error: (xhr, ajaxOptions, thrownError) ->
               response = $.parseJSON(xhr.responseText)
-              Notifications.info(response.error)
+              Notifications.error(response.error)
 
 $ ->
   Categories.IndexSortable.init() if $('#categories-index').length

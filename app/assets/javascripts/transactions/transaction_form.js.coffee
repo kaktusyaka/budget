@@ -1,7 +1,7 @@
 @module 'Transactions', ->
   @module 'Form', ->
     @init =->
-      initTransactionLinks()
+      loadFormToModal()
 
     initDatepicker = ->
       $('.datepicker').datepicker
@@ -26,7 +26,7 @@
         $(@).autocomplete "search", ""
         return
 
-    initTransactionLinks = ->
+    loadFormToModal = ->
       $('body').on 'click', 'a.open-transaction-js', (e) ->
         e.preventDefault()
         $('#transactions-form').modal('show')

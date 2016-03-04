@@ -6,8 +6,8 @@
 
 = form_for @transaction, html: { class: 'form-horizontal' } do |f|
   .modal-body
-    - if @transaction.errors.any?
-      #error_explanation
+    #error_explanation
+      - if @transaction.errors.any?
         %h2
           = pluralize(@transaction.errors.count, "error")
           prohibited this transaction from being saved:

@@ -8,7 +8,6 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        @transaction = Transaction.new
         @transactions = current_user.transactions.includes(:category)
         @current_balance = @transactions.current_balance
 
@@ -34,18 +33,18 @@ class TransactionsController < ApplicationController
     @transaction.user_id = current_user.id
 
     if @transaction.save
-      redirect_to transactions_url, notice: 'Transaction was successfully created.'
+      render json: { success: "Transaction was successfully created." }, status: 200
     else
-      render :new
+      render json: { errors: @transaction.errors }, status: 422
     end
   end
 
   def update
     @transaction.user_id = current_user.id
     if @transaction.update(transaction_params)
-      redirect_to transactions_url, notice: 'Transaction was successfully updated.'
+      render json: { success: "Transaction was successfully updated." }, status: 200
     else
-      render :edit
+      render json: { errors: @transaction.errors }, status: 422
     end
   end
 
