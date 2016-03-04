@@ -1,16 +1,25 @@
+.modal-header
+  %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", type: "button"} ×
+  %h4.modal-title
+    = @category.new_record? ? 'New' : 'Edit'
+    %span.semi-bold Category
+
 = form_for @category, html: { class: 'form-horizontal' } do |f|
-  #error_explanation
-    - if @category.errors.any?
-      %h2
-        = pluralize(@category.errors.count, "error")
-        prohibited this category from being saved:
-      %ul
-        - @category.errors.full_messages.each do |message|
-          %li= message
-  .form-group
-    = f.label :name, class: 'col-sm-2 control-label'
-    .col-sm-3
-      = f.text_field :name, class: 'form-control'
-  .form-group
-    .col-sm-offset-2.col-sm-3
+  .modal-body
+    #error_explanation
+      - if @category.errors.any?
+        %h2
+          = pluralize(@category.errors.count, "error")
+          prohibited this category from being saved:
+        %ul
+          - @category.errors.full_messages.each do |message|
+            %li= message
+    .form-group
+      = f.label :name, class: 'col-sm-3 control-label'
+      .col-sm-5
+        = f.text_field :name, class: 'form-control'
+
+  .modal-footer
+    .pull-right
       = f.submit "Submit", class: 'btn btn-default'
+

@@ -6,26 +6,28 @@ class CategoriesController < ApplicationController
   end
 
   def edit
+    render layout: 'modal'
   end
 
   def new
     @category = Category.new
+    render layout: 'modal'
   end
 
   def create
     @category = current_user.categories.build(category_params)
     if @category.save
-      redirect_to categories_url, notice: "Category was successfully created"
+      render json: { success: "Category was successfully created", id: @category.id, name: @category.name }, status: 200, layout: 'modal'
     else
-      render :new
+      render json: { errors: @category.errors }, status: 422
     end
   end
 
   def update
     if @category.update(category_params)
-      redirect_to categories_url, notice: "Category was successfully updated."
+      render json: { success: "Category was successfully updated." , id: @category.id, name: @category.name }, status: 200, layout: 'modal'
     else
-      render :edit
+      render json: { errors: @category.errors }, status: 422
     end
   end
 
