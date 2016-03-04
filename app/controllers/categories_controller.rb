@@ -1,17 +1,16 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:edit, :update, :destroy]
+  layout 'modal', only: [:new, :edit]
 
   def index
     @categories = current_user.categories.page(params[:page])
   end
 
   def edit
-    render layout: 'modal'
   end
 
   def new
     @category = Category.new
-    render layout: 'modal'
   end
 
   def create

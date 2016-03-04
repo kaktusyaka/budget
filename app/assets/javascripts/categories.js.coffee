@@ -46,18 +46,18 @@
         $.ajax
           url: self.attr('action')
           dataType: 'JSON'
-          method: 'POST'
+          method: self.attr('method').toUpperCase()
           data: self.serialize()
           success: (data) ->
             $('#categories-form').modal('hide')
             Notifications.success(data.success)
             if self.attr('action') == "/categories"
-              $(".ui-sortable li:last").after("<li class='category ui-state-default ui-sortable-handle'>
-                <span class='ui-icon ui-icon-arrowthick-2-n-s'> </span> #{data.name}
+              $(".ui-sortable li:last").after("<li id='category_#{ data.id }' class='category ui-state-default ui-sortable-handle'>
+                <span class='ui-icon ui-icon-arrowthick-2-n-s'> </span><div class='category-name'> #{data.name} </div>
                 <a class='category_action delete-category-js' href='/categories/#{data.id}.json'>
                 <div class='glyphicon glyphicon-remove'></div></a>
                 <a data-remote-target='#categories-form .modal-content' class='open-category-js category_action' title='Edit'
-                href=''/categories/#{data.id}/edit'><div class='glyphicon glyphicon-pencil'></div></a></li>")
+                href='/categories/#{data.id}/edit'><div class='glyphicon glyphicon-pencil'></div></a></li>")
             else
               $(".ui-sortable li#category_#{data.id}").find(".category-name").text(data.name)
           error: (xhr, ajaxOptions, thrownError) ->

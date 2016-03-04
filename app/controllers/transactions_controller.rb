@@ -1,7 +1,8 @@
 class TransactionsController < ApplicationController
   before_action :find_transaction, only: [:edit, :update, :destroy]
-  before_action :set_gon_category_names, only: [:new, :edit, :create, :update, :index]
+  before_action :set_gon_category_names, only: [:new, :edit]
   respond_to :html, :json
+  layout 'modal', only: [:new, :edit]
 
 
   def index
@@ -21,11 +22,9 @@ class TransactionsController < ApplicationController
 
   def new
     @transaction = Transaction.new
-    render layout: 'modal'
   end
 
   def edit
-    render layout: 'modal'
   end
 
   def create
