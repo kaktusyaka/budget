@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
   def create
     @category = current_user.categories.build(category_params)
     if @category.save
-      render json: { success: "Category was successfully created", id: @category.id, name: @category.name }, status: 200, layout: 'modal'
+      render json: { success: "Category was successfully created.", id: @category.id, name: @category.name }, status: 201, layout: 'modal'
     else
       render json: { errors: @category.errors }, status: 422
     end

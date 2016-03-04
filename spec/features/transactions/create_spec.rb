@@ -26,15 +26,14 @@ feature '#new/#create' do
     @user.transactions.count.should eq(1)
   end
 
-  scenario 'user can not create invalid transaction' do
+  scenario 'user can not create invalid transaction', js: true do
     fill_in 'Date', with: ""
     click_button 'Submit'
-    page.should have_content("5 errors prohibited this transaction from being saved")
-    page.should have_content("Date can't be blank")
-    page.should have_content("Date is not a valid date")
-    page.should have_content("Amount can't be blank")
-    page.should have_content("Amount is not a number")
-    page.should have_content("Category name can't be blank")
+    page.should have_content("Date: can't be blank")
+    page.should have_content("Date: is not a valid date")
+    page.should have_content("Amount: can't be blank")
+    page.should have_content("Amount: is not a number")
+    page.should have_content("Category_name: can't be blank")
     @user.transactions.count.should eq(0)
     end
 end
