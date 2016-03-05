@@ -20,7 +20,15 @@ feature 'Update' do
     visit '/users/edit'
     find('a .glyphicon-link').click
     expect(page).to have_content "Remote photo url"
-    fill_in 'Remote photo url', with: 'http://localhost:3000/images/john_doe.jpg'
+
+    image_url = "http://#{Rails.application.config.app_domain}:#{Rails.application.config.app_port}/images/john_doe.jpg"
+    stub_request(:get, image_url).to_return(
+         :status => 200,
+         :body => File.read("spec/fixtures/images/john_doe.jpg"),
+         :headers => {}
+      )
+
+    fill_in 'Remote photo url', with: image_url
     fill_in 'Current password', with: '******'
     click_button 'Update'
     expect(page).to have_content "Your account has been updated successfully."

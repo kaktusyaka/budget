@@ -11,9 +11,7 @@ feature '#edit/#update' do
 
   scenario 'user can update transaction with valid data', js: true do
     page.should have_selector(".datatable table tbody tr td", text: @category.name)
-    find("table .open-transaction-js").click()
-    expect(page).to have_content "Edit Transaction"
-
+    click_link "Edit"
     fill_in 'Amount', with: 50
     click_button 'Submit'
 
