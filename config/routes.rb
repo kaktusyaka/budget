@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     collection { post :sort }
   end
 
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', registrations: 'users/registrations' }
   root 'home#index'
 
   # Example of regular route:
