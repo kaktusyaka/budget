@@ -1,13 +1,12 @@
 require 'features/acceptance_helper'
 
 feature 'Update' do
-  given(:user) { create(:user, password: '******') }
+  given(:user) { create(:user) }
 
   scenario 'Update profile upload photo' do
     login(user)
     visit '/users/edit'
     attach_file("Photo", "#{Rails.root}/spec/fixtures/images/john_doe.jpg")
-    fill_in 'Current password', with: '******'
     click_button 'Update'
     expect(page).to have_content "Your account has been updated successfully."
     page.find('.navbar .navbar-right img')['src'].should have_content '/uploads/photo/file/1/small_john_doe.jpg'
@@ -29,7 +28,6 @@ feature 'Update' do
       )
 
     fill_in 'Remote photo url', with: image_url
-    fill_in 'Current password', with: '******'
     click_button 'Update'
     expect(page).to have_content "Your account has been updated successfully."
     page.find('.navbar .navbar-right img')['src'].should have_content '/uploads/photo/file/1/small_john_doe.jpg'

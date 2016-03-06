@@ -1,7 +1,15 @@
 !!!
 %html
   %head
+    %title Budget
     = stylesheet_link_tag    'application', media: 'all'
     = csrf_meta_tags
   %body{ body_attributes }
-    = yield
+    .container
+      #flash_message
+        .center.alert.fade.in.alert-danger
+          %button.close{ "data-dismiss" => "alert" }×
+          - flash.each do |name, msg|
+            = content_tag :div, msg, id: "flash_#{name}"
+      = yield
+  = javascript_include_tag 'application'
