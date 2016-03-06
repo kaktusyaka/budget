@@ -1,13 +1,12 @@
-#main-auth
-  #content
-    .profile_header
-      %h1 Resend confirmation instructions
-    .form-devise
-      = form_for resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'shift-left' } do |f|
-        = devise_error_messages!
-        %div
-          = f.label :email
-          = f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
-        %div
-          = f.submit "Resend confirmation instructions", class: 'btn'
-        = render "devise/shared/links"
+#content
+  .profile_header
+    %h1 Resend confirmation instructions
+  .form-devise
+    = form_for resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: 'shift-left' } do |f|
+      = devise_error_messages!
+      %div
+        = f.label :email
+        = f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)
+      %div
+        = f.submit "Resend confirmation instructions", class: 'btn'
+      = render "devise/shared/links"
