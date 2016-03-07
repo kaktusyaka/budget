@@ -12,6 +12,7 @@ gem 'ransack'
 gem 'validates_timeliness', '~> 4.0'
 
 # Assets
+gem 'eco'
 gem 'haml'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'jquery-rails'

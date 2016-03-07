@@ -54,7 +54,7 @@
             errors = $.parseJSON(xhr.responseText).errors
             errorMessage = []
             $.each errors, (key, val) ->
-              $("#transaction_#{ key }").addClass('border-danger').before("<small class='text-danger'>#{ val.join(", ") }</small>")
+              $("#transaction_#{ key }").addClass('border-danger').before JST['templates/field_errors']({ errors: val.join(", ") })
               i = 0
               while i < val.length
                 errorMessage.push( key.charAt(0).toUpperCase() + key.slice(1) + ": " + val[i] )

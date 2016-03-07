@@ -1,0 +1,11 @@
+<li id="category_<%= @id %>" class="category ui-state-default ui-sortable-handle">
+  <span class="ui-icon ui-icon-arrowthick-2-n-s"> </span>
+  <div class="category-name"> <%= @name %> </div>
+  <a class="category_action delete-category-js" href="/categories/<%= @id %>.json">
+    <div class="glyphicon glyphicon-remove"></div>
+  </a>
+  <a data-remote-target="#categories-form .modal-content" class="open-category-js category_action" title="Edit"
+    href="/categories/<%= @id %>/edit">
+    <div class="glyphicon glyphicon-pencil"></div>
+  </a>
+</li>

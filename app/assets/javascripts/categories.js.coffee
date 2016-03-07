@@ -52,12 +52,7 @@
             $('#categories-form').modal('hide')
             Notifications.success(data.success)
             if self.attr('action') == "/categories"
-              $(".ui-sortable li:last").after("<li id='category_#{ data.id }' class='category ui-state-default ui-sortable-handle'>
-                <span class='ui-icon ui-icon-arrowthick-2-n-s'> </span><div class='category-name'> #{data.name} </div>
-                <a class='category_action delete-category-js' href='/categories/#{data.id}.json'>
-                <div class='glyphicon glyphicon-remove'></div></a>
-                <a data-remote-target='#categories-form .modal-content' class='open-category-js category_action' title='Edit'
-                href='/categories/#{data.id}/edit'><div class='glyphicon glyphicon-pencil'></div></a></li>")
+              $(".ui-sortable li:last").after JST['templates/categories']({ id: data.id, name: data.name })
             else
               $(".ui-sortable li#category_#{data.id}").find(".category-name").text(data.name)
           error: (xhr, ajaxOptions, thrownError) ->
@@ -67,7 +62,7 @@
             errors = $.parseJSON(xhr.responseText).errors
             errorMessage = []
             $.each errors, (key, val) ->
-              $("#category_#{ key }").addClass('border-danger').before("<small class='text-danger'>#{ val.join(", ") }</small>")
+              $("#category_#{ key }").addClass('border-danger').before JST['templates/field_errors']({ errors: val.join(", ") })
               i = 0
               while i < val.length
                 errorMessage.push( key.charAt(0).toUpperCase() + key.slice(1) + ": " + val[i] )
