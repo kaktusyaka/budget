@@ -1,11 +1,12 @@
 require 'features/acceptance_helper'
 
 feature 'Update' do
-  given(:user) { create(:user) }
-
-  scenario 'Update profile upload photo' do
-    login(user)
+  background {
+    create_logged_in_user
     visit '/users/edit'
+  }
+
+  scenario 'profile uploading photo' do
     attach_file("Photo", "#{Rails.root}/spec/fixtures/images/john_doe.jpg")
     click_button 'Update'
     expect(page).to have_content "Your account has been updated successfully."
@@ -14,9 +15,7 @@ feature 'Update' do
     page.find('.form-group img')['src'].should have_content '/uploads/photo/file/1/thumb_john_doe.jpg'
   end
 
-  scenario 'Update profile upload photo', js: true do
-    login(user)
-    visit '/users/edit'
+  scenario 'profile adding remote photo url', js: true do
     find('a .glyphicon-link').click
     expect(page).to have_content "Remote photo url"
 
@@ -33,5 +32,15 @@ feature 'Update' do
     page.find('.navbar .navbar-right img')['src'].should have_content '/uploads/photo/file/1/small_john_doe.jpg'
     visit '/users/edit'
     page.find('.form-group img')['src'].should have_content '/uploads/photo/file/1/thumb_john_doe.jpg'
+  end
+
+  scenario 'profile with invalid data' do
+    fill_in 'First name', with: ""
+    fill_in 'Last name', with: ""
+    fill_in 'Email', with: ""
+    click_button 'Update'
+    expect(page).to have_content "First name can't be blank"
+    expect(page).to have_content "Last name can't be blank"
+    expect(page).to have_content "Email can't be blank"
   end
 end

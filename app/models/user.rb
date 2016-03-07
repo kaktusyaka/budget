@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   TEMP_EMAIL_PREFIX = 'change@me'
 
   validates :first_name, :last_name, presence: true, length: { maximum: 255 }
+  validates :time_zone, inclusion: { in: ActiveSupport::TimeZone.all.map(&:name) }, allow_blank: true
   has_many :authorizations, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :transactions, through: :categories

@@ -35,6 +35,10 @@
     %div
       Currently waiting confirmation for: #{resource.unconfirmed_email}
   .form-group
+    = f.label :time_zone, class: 'col-sm-2 control-label'
+    .col-sm-3
+      = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {default: "Brisbane"}, {class: 'form-control'}
+  .form-group
     = f.label :password, class: 'col-sm-2 control-label'
     .col-sm-3
       %i (leave blank if you don't want to change it)
