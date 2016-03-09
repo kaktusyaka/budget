@@ -15,6 +15,7 @@ describe User do
   it { should have_many(:categories).dependent(:destroy) }
   it { should have_many(:transactions).through(:categories) }
   it { should have_one(:photo).dependent(:destroy) }
+  it { should belong_to(:pricing_plan) }
   it { should accept_nested_attributes_for(:photo).allow_destroy(true) }
 
  context 'Validations' do
@@ -93,6 +94,19 @@ describe User do
           expect(User.first.first_name).to eq( @current_user.first_name )
         end
       end
+    end
+
+    context "#set_default_pricing_plan" do
+      it "should set pricing_plan Free" do
+        expect(create(:user).pricing_plan).to eq(PricingPlan.first)
+      end
+
+      it "should not update pricing_plan" do
+        user = create(:user)
+        user.update_attributes(pricing_plan: PricingPlan.last)
+        user.pricing_plan.should eq( PricingPlan.last )
+      end
+
     end
   end
 end
