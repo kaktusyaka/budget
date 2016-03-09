@@ -5,6 +5,7 @@ FactoryGirl.define do
     email                 { Faker::Internet.email }
     password              { "password" }
     confirmed_at          { Time.now }
+    #pricing_plan
   end
 
 end
