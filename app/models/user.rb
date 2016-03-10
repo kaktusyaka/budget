@@ -52,6 +52,6 @@ class User < ActiveRecord::Base
 
   private
   def set_default_pricing_plan
-    self.pricing_plan = PricingPlan.first unless pricing_plan
+    self.pricing_plan = PricingPlan.defaul_plan unless pricing_plan
   end
 end

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :categories do
     collection { post :sort }
   end
+  resources :pricing_plans, only: [:index]
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', registrations: 'users/registrations' }
   root 'home#index'
