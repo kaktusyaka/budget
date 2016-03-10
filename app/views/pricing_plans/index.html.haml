@@ -1,0 +1,27 @@
+.header
+  %h2 Pick your plan
+  %h4 Upgrade, downgrade, or cancel anytime.
+.row.pricing-wrapper
+  - @pricing_plans.each do |pricing_plan|
+    .col-md-3.col-lg-3.col-xs-6.col-sm-6.column
+      .pricing-table.hover.recommended
+        %h1.pricing-title=pricing_plan.name
+        .border.rotate
+          .table-price
+            = number_to_currency pricing_plan.price
+            %span= "/mo"
+        %ul.list-group
+          %li.list-group-item
+            - if pricing_plan.premium?
+              Unlimate
+            - else
+              #{pricing_plan.quantity_of_categories} categories
+          %li.list-group-item
+            - if pricing_plan.premium?
+              Unlimate
+            - else
+              #{pricing_plan.quantity_of_transactions} transactions
+        .table-buy
+          - unless pricing_plan.mini?
+            = link_to "Buy now", "", class: 'primary-action stretch_two'
+

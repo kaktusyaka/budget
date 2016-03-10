@@ -42,7 +42,7 @@ feature '#new/#create' do
       create(:transaction, user_id: @user.id, category_name: @user.categories.first.name)
     end
     visit transactions_path
-    page.should have_content("You cann't create more then #{@user.pricing_plan.quantity_of_transactions} transactions on #{@user.pricing_plan.name.capitalize} pricing plan. Please upgrade your pricing plan")
+    page.should have_content("You cann't create more then #{@user.pricing_plan.quantity_of_transactions} transactions on #{@user.pricing_plan.name.capitalize} pricing plan. Please upgrade your Pricing plan")
     page.should_not have_content("New Transaction")
   end
 end

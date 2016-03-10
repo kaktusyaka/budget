@@ -28,6 +28,7 @@ describe User do
 
  context '#Methods' do
     context '#from_omniauth' do
+      before { create(:mini_plan) }
       context '#login via Twitter without current_user' do
         before { User.from_omniauth( set_omniauth( tw_auth ) ) }
 

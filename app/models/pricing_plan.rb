@@ -8,11 +8,19 @@ class PricingPlan < ActiveRecord::Base
     p.validates :quantity_of_transactions, numericality: { greater_than: 0, only_integer: true }
   end
 
-  def free?
-    name.eql?("free")
+  def self.defaul_plan
+    self.find_by_name("mini")
   end
 
-  def standart?
-    name.eql?("standart")
+  def method_missing(meth, *args, &block)
+    method_name = meth.to_s.gsub("?","")
+    if method_name.in?(PricingPlan.pluck(:name))
+      self.class.send('define_method', meth) {
+        method_name == self.name
+      }
+      self.send(meth)
+    else
+      super
+    end
   end
 end
