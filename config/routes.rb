@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   resources :categories do
     collection { post :sort }
   end
-  resources :pricing_plans, only: [:index]
+  resources :pricing_plans, only: [:index] do
+    member do
+      get 'checkout'
+    end
+  end
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', registrations: 'users/registrations' }
   root 'home#index'

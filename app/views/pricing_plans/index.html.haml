@@ -24,7 +24,7 @@
               #{pricing_plan.quantity_of_transactions} transactions
         .table-buy
           - unless pricing_plan.mini?
-            = link_to "Buy now", "", class: 'primary-action stretch_two'
+            = link_to "Buy now", checkout_pricing_plan_path(pricing_plan), class: 'primary-action stretch_two'
 
 .row.pricing-wrapper2.hidden
   - @pricing_plans.each do |pricing_plan|
