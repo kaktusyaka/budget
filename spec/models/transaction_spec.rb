@@ -22,7 +22,7 @@ describe Transaction do
     }
     it "should return transactions created only for this month" do
       @user.transactions.count.should eq(3)
-      @user.transactions.this_month.should eq([@transaction1, @transaction2])
+      @user.transactions.this_month.should eq([@transaction2, @transaction1])
     end
   end
  end

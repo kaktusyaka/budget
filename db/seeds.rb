@@ -1,5 +1,5 @@
 [ FactoryGirl.attributes_for(:mini_plan),
-  FactoryGirl.attributes_for(:standart_plan),
+  FactoryGirl.attributes_for(:standard_plan),
   FactoryGirl.attributes_for(:plus_plan),
   FactoryGirl.attributes_for(:premium_plan)].each do |attributes|
 
