@@ -27,10 +27,10 @@ describe PricingPlan do
      end
 
      it "should_not raise error" do
-       pricing_plan = create(:standart_plan)
+       pricing_plan = create(:standard_plan)
        user = create(:user, pricing_plan: pricing_plan)
-       expect {user.pricing_plan.standart?}.not_to raise_error
-       user.pricing_plan.standart?.should be true
+       expect {user.pricing_plan.standard?}.not_to raise_error
+       user.pricing_plan.standard?.should be true
      end
    end
  end

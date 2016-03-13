@@ -6,8 +6,8 @@ FactoryGirl.define do
     quantity_of_transactions 30
   end
 
-  factory :standart_plan, class: PricingPlan do
-    name                     "standart"
+  factory :standard_plan, class: PricingPlan do
+    name                     "standard"
     price                    20.0
     quantity_of_categories   10
     quantity_of_transactions 500
