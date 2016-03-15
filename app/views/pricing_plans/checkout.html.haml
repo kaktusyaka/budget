@@ -4,5 +4,21 @@
 .payment-methods
   = link_to "" do
     = image_tag "paypal.jpg"
-  = link_to "" do
-    = image_tag "stripe.png"
+  = form_tag upgrade_pricing_plan_path, { method: :post, id: 'stripe_form' } do
+    %noscript
+      You must
+      = link_to "enable JavaScript", "http://www.enable-javascript.com", :target => "_blank"
+      in your web browser in order to pay via Stripe.
+    = hidden_field_tag :id, @pricing_plan.id
+    %button#stripe_button{:'data-amount' => (@pricing_plan.price*100).to_i,
+                          :'data-image'       => "/assets/coin-logo.jpg",
+                          :'color'            => 'black',
+                          :'data-currency'    => Figaro.env.currency_code,
+                          :'data-description' => "Payment for pricing plan ##{ @pricing_plan.name }",
+                          :'data-key'         => Figaro.env.stripe_publishable_key,
+                          :'data-email'       => current_user.email,
+                          :'data-name'        => 'Save Budget',
+                          :type               => "submit"}
+      = image_tag "stripe.png"
+    %script{:src => "https://checkout.stripe.com/v2/checkout.js"}
+

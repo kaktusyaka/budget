@@ -4,7 +4,6 @@
       svgAnimashion()
       showAnotherDesign()
 
-
     svgAnimashion =->
       speed = 330
       easing = mina.backout
@@ -30,3 +29,4 @@
 
 $ ->
   PricingPlan.Index.init() if $('#pricing-plans-index').length
+

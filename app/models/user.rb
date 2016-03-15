@@ -8,14 +8,14 @@ class User < ActiveRecord::Base
   belongs_to :pricing_plan
 
   validates :first_name, :last_name, presence: true, length: { maximum: 255 }
-  validates :pricing_plan, presence: true
+  validates :pricing_plan, presence: true, on: :update
   validates :time_zone, inclusion: { in: ActiveSupport::TimeZone.all.map(&:name) }, allow_blank: true
 
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   accepts_nested_attributes_for :photo, allow_destroy: true, reject_if: ->(attr){ attr['file'].blank? and attr['remote_file_url'].blank? }
-  before_validation :set_default_pricing_plan, on: :create
+  after_create :set_default_pricing_plan
 
   def self.from_omniauth auth, current_user = nil
     authorization = Authorization.from_omniauth auth
@@ -50,8 +50,26 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def create_stripe_customer stripe_token
+    Stripe.api_key = Figaro.env.stripe_api_key
+
+    customer = Stripe::Customer.create email: email, card: stripe_token
+    update_column :stripe_id, customer.id
+  end
+
+  def pay!(pricing_plan, stripe_token)
+    Stripe.api_key = Figaro.env.stripe_api_key
+    Stripe::Charge.create(
+      amount:      (pricing_plan.price * 100).to_i,
+      description: "SaveBudget: for pricing plan #{ pricing_plan.name }",
+      currency:    Figaro.env.currency_code.downcase,
+      source:      stripe_token
+    )
+    update_column :pricing_plan_id, pricing_plan.id
+  end
+
   private
-  def set_default_pricing_plan
-    self.pricing_plan = PricingPlan.defaul_plan unless pricing_plan
+  def set_default_pricing_plan( downgrade = false )
+    update_column :pricing_plan_id, PricingPlan.defaul_plan.id unless pricing_plan and !downgrade
   end
 end

@@ -10,6 +10,7 @@ gem 'mini_magick'
 gem 'pg'
 gem 'rails', '~> 4.2.5'
 gem 'ransack'
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'validates_timeliness', '~> 4.0'
 
 # Assets
