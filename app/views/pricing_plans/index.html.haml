@@ -23,8 +23,11 @@
             - else
               #{pricing_plan.quantity_of_transactions} transactions
         .table-buy
-          - unless pricing_plan.mini?
-            = link_to "Buy now", checkout_pricing_plan_path(pricing_plan), class: 'primary-action stretch_two'
+          - unless pricing_plan.name.eql?(current_user.pricing_plan.name)
+            - if pricing_plan.mini?
+              = link_to "Downgrade", downgrade_pricing_plans_path, class: 'primary-action stretch_two'
+            - else
+              = link_to "Buy now", checkout_pricing_plan_path(pricing_plan), class: 'primary-action stretch_two'
 
 .row.pricing-wrapper2.hidden
   - @pricing_plans.each do |pricing_plan|

@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :pricing_plans, only: [:index] do
     member do
       get 'checkout'
+      post 'upgrade'
     end
+    collection { get 'downgrade' }
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', registrations: 'users/registrations' }
