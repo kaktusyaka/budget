@@ -57,13 +57,13 @@ class User < ActiveRecord::Base
     update_column :stripe_id, customer.id
   end
 
-  def pay!(pricing_plan, stripe_token)
+  def pay!(pricing_plan)
     Stripe.api_key = Figaro.env.stripe_api_key
     Stripe::Charge.create(
       amount:      (pricing_plan.price * 100).to_i,
       description: "SaveBudget: for pricing plan #{ pricing_plan.name }",
       currency:    Figaro.env.currency_code.downcase,
-      source:      stripe_token
+      customer:    self.stripe_id
     )
     update_column :pricing_plan_id, pricing_plan.id
   end

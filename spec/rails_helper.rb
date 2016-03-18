@@ -9,6 +9,7 @@ require 'capybara/rspec'
 require 'webmock/rspec'
 require 'vcr'
 require "cancan/matchers"
+require 'stripe_mock'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
