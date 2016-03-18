@@ -5,7 +5,7 @@
 .row.pricing-wrapper
   - @pricing_plans.each do |pricing_plan|
     .col-md-3.col-lg-3.col-xs-6.col-sm-6.column
-      .pricing-table.hover.recommended
+      %div{ class: "pricing-table hover recommended #{ pricing_plan.name}" }
         %h1.pricing-title=pricing_plan.name
         .border.rotate
           .table-price
@@ -32,7 +32,7 @@
 .row.pricing-wrapper2.hidden
   - @pricing_plans.each do |pricing_plan|
     .col-md-3.col-sm-6.col-xs-10.col-xs-offset-1.col-sm-offset-0
-      .pinpong-item
+      %div{ class: "pinpong-item another-#{ pricing_plan.name}" }
         .pinpong-header
           .figure
             .sanimate{ "data-path-hover" => "m 0.2375,-1.325 0,118.2 c 46.5,-14.6 60.5,-21.4 97.5,-21.2 37,0.2 49.6,5.5 97.5,19.4 l 0,-118.2 -195,1.8 z" }
@@ -63,7 +63,8 @@
                           %strong= pricing_plan.quantity_of_transactions
                           Transactions
                 .pinpong-footer
-                  - unless pricing_plan.mini?
-                    %button.btn.svbutton.bold{:type => "button"} Buy now
-                  - else
-                    %button.btn.svbutton.bold{:type => "button"}
+                  - unless pricing_plan.name.eql?(current_user.pricing_plan.name)
+                    - if pricing_plan.mini?
+                      = link_to "Downgrade", downgrade_pricing_plans_path, class: 'btn svbutton bold'
+                    - else
+                      = link_to "Buy now", checkout_pricing_plan_path(pricing_plan), class: 'btn svbutton bold'

@@ -109,5 +109,67 @@ describe User do
       end
 
     end
+
+    context "Stripe" do
+      let(:stripe_helper) { StripeMock.create_test_helper }
+      before {
+        @current_user = create(:user)
+        StripeMock.start
+        Stripe.api_key = Figaro.env.stripe_api_key.to_s
+      }
+      after { StripeMock.stop }
+
+      context "#create_stripe_customer" do
+        it "should add stripe_id to user" do
+          expect{@current_user.create_stripe_customer(stripe_helper.generate_card_token)}.to change(@current_user, :stripe_id)
+        end
+      end
+
+      context "#pay!" do
+        it "should pay successfully" do
+          standard_plan = create(:standard_plan)
+          expect { @current_user.pay!(standard_plan)}.to change(@current_user, :pricing_plan_id)
+        end
+
+        it "should return declined card error" do
+          standard_plan = create(:standard_plan)
+          StripeMock.prepare_card_error(:card_declined)
+          expect { @current_user.pay!(standard_plan) }.to raise_error {|e|
+            expect(e).to be_a Stripe::CardError
+            expect(e.http_status).to eq(402)
+            expect(e.code).to eq('card_declined')
+          }
+        end
+      end
+    end
+
+    context "#set_default_pricing_plan" do
+      before { create(:mini_plan) }
+
+      it "should downgrade pricing plan to default" do
+        pricing_plan = create(:standard_plan)
+        user = create(:user, pricing_plan: pricing_plan)
+        expect { user.send(:set_default_pricing_plan, true) }.to change(user, :pricing_plan_id).to PricingPlan.defaul_plan.id
+      end
+
+      it "should set defaul_plan to new user" do
+        user = build(:user, pricing_plan_id: nil)
+        user.should be_valid
+        expect{ user.save }.to change(user, :pricing_plan_id).to PricingPlan.defaul_plan.id
+      end
+
+      it "should not change pricing plan if pricing plan exist for new user" do
+        pricing_plan = create(:standard_plan)
+        user = build(:user, pricing_plan: pricing_plan)
+        user.should be_valid
+        expect{ user.save }.not_to change(user, :pricing_plan_id)
+      end
+
+      it "should not change pricing plan for existent user" do
+        pricing_plan = create(:standard_plan)
+        user = create(:user, pricing_plan: pricing_plan)
+        expect { user.send(:set_default_pricing_plan) }.not_to change(user, :pricing_plan_id)
+      end
+    end
   end
 end
