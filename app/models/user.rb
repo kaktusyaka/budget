@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
     update_column :stripe_id, customer.id
   end
 
-  def pay!(pricing_plan)
+  def pay_via_stripe!(pricing_plan)
     Stripe.api_key = Figaro.env.stripe_api_key
     Stripe::Charge.create(
       amount:      (pricing_plan.price * 100).to_i,
@@ -65,11 +65,29 @@ class User < ActiveRecord::Base
       currency:    Figaro.env.currency_code.downcase,
       customer:    self.stripe_id
     )
-    update_column :pricing_plan_id, pricing_plan.id
+    update_pricing_plan pricing_plan.id
+  end
+
+  def pay_via_paypal!( params )
+    pricing_plan = PricingPlan.find(params[:id])
+    response = EXPRESS_GATEWAY.purchase(
+      (pricing_plan.price * 100).to_i,
+      { ip: params[:ip], token: params[:token], payer_id: params[:PayerID] })
+
+    if response.success?
+      update_pricing_plan pricing_plan.id
+      { :success => true }
+    else
+      { :message => response.params["message"], id: pricing_plan.id }
+    end
   end
 
   private
   def set_default_pricing_plan( downgrade = false )
     update_column :pricing_plan_id, PricingPlan.defaul_plan.id unless pricing_plan and !downgrade
+  end
+
+  def update_pricing_plan plan_id
+    update_column :pricing_plan_id, plan_id
   end
 end

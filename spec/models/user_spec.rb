@@ -125,16 +125,16 @@ describe User do
         end
       end
 
-      context "#pay!" do
+      context "#pay_via_stripe!" do
         it "should pay successfully" do
           standard_plan = create(:standard_plan)
-          expect { @current_user.pay!(standard_plan)}.to change(@current_user, :pricing_plan_id)
+          expect { @current_user.pay_via_stripe!(standard_plan)}.to change(@current_user, :pricing_plan_id)
         end
 
         it "should return declined card error" do
           standard_plan = create(:standard_plan)
           StripeMock.prepare_card_error(:card_declined)
-          expect { @current_user.pay!(standard_plan) }.to raise_error {|e|
+          expect { @current_user.pay_via_stripe!(standard_plan) }.to raise_error {|e|
             expect(e).to be_a Stripe::CardError
             expect(e.http_status).to eq(402)
             expect(e.code).to eq('card_declined')

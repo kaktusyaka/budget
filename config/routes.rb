@@ -9,8 +9,14 @@ Rails.application.routes.draw do
     member do
       get 'checkout'
       post 'upgrade'
+      get 'paypal_express_checkout'
+      get 'upgrade_with_paypal'
+      get 'cancel_payment'
     end
-    collection { get 'downgrade' }
+    collection do
+      get 'downgrade'
+      get 'finish_payment'
+    end
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', registrations: 'users/registrations' }
