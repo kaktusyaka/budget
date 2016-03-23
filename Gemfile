@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 ruby '2.3.0'
+gem 'activemerchant'
 gem 'airbrake', '~> 5.0'
 gem 'cancancan', '~> 1.10'
 gem 'carrierwave'
