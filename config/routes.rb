@@ -12,9 +12,9 @@ Rails.application.routes.draw do
       get 'paypal_express_checkout'
       get 'upgrade_with_paypal'
       get 'cancel_payment'
+      get 'downgrade'
     end
     collection do
-      get 'downgrade'
       get 'finish_payment'
     end
   end
