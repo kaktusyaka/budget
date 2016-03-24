@@ -54,7 +54,7 @@ class PricingPlansController < ApplicationController
   end
 
   def downgrade
-    current_user.send(:set_default_pricing_plan, true)
+    current_user.send(:set_pricing_plan, params[:id])
     flash[:success] = "You Pricing plan was successfully downgrated to #{ current_user.pricing_plan.name.capitalize } pricing plan!"
     redirect_to root_path
   end

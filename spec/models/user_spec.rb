@@ -143,13 +143,17 @@ describe User do
       end
     end
 
-    context "#set_default_pricing_plan" do
+    context "#set_pricing_plan" do
       before { create(:mini_plan) }
 
       it "should downgrade pricing plan to default" do
-        pricing_plan = create(:standard_plan)
-        user = create(:user, pricing_plan: pricing_plan)
-        expect { user.send(:set_default_pricing_plan, true) }.to change(user, :pricing_plan_id).to PricingPlan.defaul_plan.id
+        standard_plan = create(:standard_plan)
+        plus_plan = create(:plus_plan)
+        premium_plan = create(:premium_plan)
+        user = create(:user, pricing_plan: premium_plan)
+        expect { user.send(:set_pricing_plan, plus_plan.id) }.to change(user, :pricing_plan_id).to plus_plan.id
+        expect { user.send(:set_pricing_plan, standard_plan.id) }.to change(user, :pricing_plan_id).to standard_plan.id
+        expect { user.send(:set_pricing_plan, PricingPlan.defaul_plan.id) }.to change(user, :pricing_plan_id).to PricingPlan.defaul_plan.id
       end
 
       it "should set defaul_plan to new user" do
@@ -168,7 +172,7 @@ describe User do
       it "should not change pricing plan for existent user" do
         pricing_plan = create(:standard_plan)
         user = create(:user, pricing_plan: pricing_plan)
-        expect { user.send(:set_default_pricing_plan) }.not_to change(user, :pricing_plan_id)
+        expect { user.send(:set_pricing_plan) }.not_to change(user, :pricing_plan_id)
       end
     end
   end

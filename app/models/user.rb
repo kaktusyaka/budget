@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   accepts_nested_attributes_for :photo, allow_destroy: true, reject_if: ->(attr){ attr['file'].blank? and attr['remote_file_url'].blank? }
-  after_create :set_default_pricing_plan
+  after_create :set_pricing_plan
 
   def self.from_omniauth auth, current_user = nil
     authorization = Authorization.from_omniauth auth
@@ -83,8 +83,12 @@ class User < ActiveRecord::Base
   end
 
   private
-  def set_default_pricing_plan( downgrade = false )
-    update_column :pricing_plan_id, PricingPlan.defaul_plan.id unless pricing_plan and !downgrade
+  def set_pricing_plan( pricing_plan_id = nil )
+    if pricing_plan_id
+      update_column :pricing_plan_id, pricing_plan_id
+    elsif !self.pricing_plan
+      update_column :pricing_plan_id, PricingPlan.defaul_plan.id
+    end
   end
 
   def update_pricing_plan plan_id
