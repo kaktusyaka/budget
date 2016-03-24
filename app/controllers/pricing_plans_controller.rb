@@ -1,5 +1,5 @@
 class PricingPlansController < ApplicationController
-  before_action :set_pricing_plan, only: [:checkout, :upgrade, :paypal_express_checkout, :cancel_payment]
+  before_action :set_pricing_plan, only: [:checkout, :upgrade_with_stripe, :paypal_express_checkout, :cancel_payment]
 
   def index
     @pricing_plans = PricingPlan.all
@@ -8,11 +8,11 @@ class PricingPlansController < ApplicationController
   def checkout
   end
 
-  def upgrade
+  def upgrade_with_stripe
     begin
       current_user.create_stripe_customer(params[:stripeToken]) if current_user.stripe_id.blank?
       current_user.pay_via_stripe!(@pricing_plan)
-      redirect_to finish_payment_pricing_plans_path
+      finish_payment
     rescue Stripe::CardError => e
       redirect_to cancel_paypal_pricing_plan_path(id: params[:id], message: e.message)
     end
@@ -36,7 +36,7 @@ class PricingPlansController < ApplicationController
   def upgrade_with_paypal
     purchase = current_user.pay_via_paypal!( params.merge({ ip: request.remote_ip }) )
     if purchase[:success]
-      redirect_to finish_payment_pricing_plans_path
+      finish_payment
     else
       redirect_to cancel_payment_pricing_plan_path(id: purchase[:id], message: purchase[:message])
     end
