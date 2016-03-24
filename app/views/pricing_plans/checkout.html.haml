@@ -28,7 +28,7 @@
 
   = link_to paypal_express_checkout_pricing_plan_path(@pricing_plan) do
     = image_tag "paypal.jpg"
-  = form_tag upgrade_pricing_plan_path, { method: :post, id: 'stripe_form' } do
+  = form_tag upgrade_with_stripe_pricing_plan_path, { method: :post, id: 'stripe_form' } do
     %noscript
       You must
       = link_to "enable JavaScript", "http://www.enable-javascript.com", :target => "_blank"
