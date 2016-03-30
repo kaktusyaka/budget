@@ -18,6 +18,7 @@
             method: 'GET'
             url: '/transactions/data_for_chart'
             success: (data) ->
+              $('#current_balance h2 span').text(data.current_balance)
               GoogleChart.drowCharts(data.expenditures_by_category, data.balances_for_chart)
         ajax:
           url: $(@).data('source')
