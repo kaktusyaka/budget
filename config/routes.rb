@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :transactions
+  resources :transactions do
+    collection { get :data_for_chart }
+  end
   resources :categories do
     collection { post :sort }
   end

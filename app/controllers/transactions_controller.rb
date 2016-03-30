@@ -8,16 +8,20 @@ class TransactionsController < ApplicationController
   def index
 
     respond_to do |format|
-      format.html do
-        @transactions = current_user.transactions.includes(:category)
-        @current_balance = @transactions.current_balance
-
-        gon.expenditures_by_category = Transaction.expenditures_this_month(@transactions).unshift(['Categoty Name', 'Amount'])
-        gon.balances_for_chart = @transactions.weekly_balances.unshift(['Week', 'Balance', 'Average'])
-      end
+      format.html
       format.json { render json: TransactionsDatatable.new(view_context, current_user) }
     end
+  end
 
+  def data_for_chart
+    transactions = current_user.transactions.includes(:category)
+    current_balance = transactions.current_balance
+
+    render json: {
+      current_balance: current_balance,
+      expenditures_by_category: Transaction.expenditures_this_month(transactions).unshift(['Categoty Name', 'Amount']),
+      balances_for_chart: transactions.weekly_balances.unshift(['Week', 'Balance', 'Average'])
+    }
   end
 
   def new

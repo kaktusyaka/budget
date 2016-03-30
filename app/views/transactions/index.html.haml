@@ -14,8 +14,12 @@
   %br
     = link_to 'New Transaction', new_transaction_path, data: { :'remote-target' => '#transactions-form .modal-content' }, class: 'open-transaction-js', title: "New"
 
-.col-md-12
-  %h2= "Current balance: #{@current_balance}"
+.col-md-12#current_balance
+  %h2
+    = "Current balance: "
+    %span
+    = Figaro.env.currency_code
+
 .col-md-12
   #piechart_3d{:style => "width: 900px; height: 500px;"}
 .col-md-12

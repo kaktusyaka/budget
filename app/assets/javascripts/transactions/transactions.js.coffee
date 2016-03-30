@@ -3,8 +3,8 @@
     @init =->
       table = initDatatable()
       initDelete(table)
-      GoogleChart.init()
       submitTransactionForm(table) if $('#transactions-form').length
+      GoogleChart.init()
 
     initDatatable = ->
       $(".datatable table").DataTable({
@@ -13,6 +13,12 @@
         columnDefs: [{ orderable: false, targets: [5] }],
         processing: true,
         serverSide: true,
+        drawCallback: (settings) ->
+          $.ajax
+            method: 'GET'
+            url: '/transactions/data_for_chart'
+            success: (data) ->
+              GoogleChart.drowCharts(data.expenditures_by_category, data.balances_for_chart)
         ajax:
           url: $(@).data('source')
       })

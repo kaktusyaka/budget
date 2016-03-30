@@ -1,7 +1,10 @@
 @module 'GoogleChart', ->
   @init =->
-    drawChart = ->
-      data = google.visualization.arrayToDataTable(gon.expenditures_by_category)
+    google.charts.load 'current', packages: [ 'corechart' ]
+
+  @drowCharts = (expenditures_by_category, balances_for_chart)->
+    drawPieChart = ->
+      data = google.visualization.arrayToDataTable(expenditures_by_category)
       options =
         title: 'Expenditures by category for current month'
         is3D: true
@@ -9,8 +12,8 @@
       chart.draw data, options
       return
 
-    drawVisualization = ->
-      data = google.visualization.arrayToDataTable(gon.balances_for_chart)
+    drawComboChart = ->
+      data = google.visualization.arrayToDataTable(balances_for_chart)
       options =
         title: 'Weekly Balances for last 6 months'
         vAxis: title: 'Amount'
@@ -21,7 +24,6 @@
       chart.draw data, options
       return
 
-    google.charts.load 'current', packages: [ 'corechart' ]
-    google.charts.setOnLoadCallback drawChart
-    google.charts.setOnLoadCallback drawVisualization
+    google.charts.setOnLoadCallback drawPieChart
+    google.charts.setOnLoadCallback drawComboChart
 
