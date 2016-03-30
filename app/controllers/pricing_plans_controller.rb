@@ -54,8 +54,12 @@ class PricingPlansController < ApplicationController
   end
 
   def downgrade
-    current_user.send(:set_pricing_plan, params[:id])
-    flash[:success] = "You Pricing plan was successfully downgrated to #{ current_user.pricing_plan.name.capitalize } pricing plan!"
+    if current_user.can_downgrade?(params[:id])
+      current_user.send(:set_pricing_plan, params[:id])
+      flash[:success] = "You Pricing plan was successfully downgrated to #{ current_user.pricing_plan.name.capitalize } pricing plan!"
+    else
+      flash[:error] = "You don't have permissions to upgrade pricing plan"
+    end
     redirect_to root_path
   end
 
