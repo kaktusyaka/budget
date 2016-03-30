@@ -82,6 +82,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def can_downgrade?(plan_id)
+    self.pricing_plan.price > PricingPlan.find(plan_id).price
+  end
+
   private
   def set_pricing_plan( pricing_plan_id = nil )
     if pricing_plan_id
