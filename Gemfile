@@ -5,6 +5,8 @@ gem 'activemerchant'
 gem 'airbrake', '~> 5.0'
 gem 'cancancan', '~> 1.10'
 gem 'carrierwave'
+gem 'factory_girl_rails'
+gem 'faker'
 gem "figaro"
 gem 'kaminari'
 gem 'mini_magick'
@@ -40,8 +42,6 @@ gem 'omniauth-twitter'
 
 group :development, :test do
   gem 'byebug'
-  gem 'factory_girl_rails'
-  gem 'faker'
   gem 'rspec-rails'
   gem 'vcr'
 end
