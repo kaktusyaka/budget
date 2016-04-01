@@ -46,6 +46,7 @@ feature '#Pricing plans page:' do
       expect(page).to have_content "Pricing plan #{@standard_plan.name.capitalize}"
       expect(page).to have_content "Select payment method"
       find('#stripe_form').first(:button).click
+      sleep 1
 
       Capybara.within_frame 'stripe_checkout_app' do
         4.times {find('#card_number').send_keys('4242')}

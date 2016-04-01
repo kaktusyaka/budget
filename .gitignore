@@ -13,6 +13,8 @@ public/uploads/*
 config/database.yml
 uploads/*
 .byebug_history
+coverage
+rails_best_practices_output.html
 
 # Ignore application configuration
 /config/application.yml
