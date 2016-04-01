@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   validates :pricing_plan, presence: true, on: :update
   validates :time_zone, inclusion: { in: ActiveSupport::TimeZone.all.map(&:name) }, allow_blank: true
 
+  delegate :quantity_of_categories, :quantity_of_transactions, to: :pricing_plan, prefix: true
+  delegate :count, to: :categories, prefix: true
+  delegate :this_month, to: :transactions, prefix: true
+
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
