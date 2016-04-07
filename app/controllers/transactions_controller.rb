@@ -1,7 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :find_transaction, only: [:edit, :update, :destroy]
   before_action :set_gon_category_names, only: [:new, :edit]
-  before_action :set_transactions, only: [:index, :data_for_chart]
   respond_to :html, :json
   layout 'modal', only: [:new, :edit]
   load_and_authorize_resource
