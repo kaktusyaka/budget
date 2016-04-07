@@ -1,21 +1,25 @@
 class TransactionsController < ApplicationController
   before_action :find_transaction, only: [:edit, :update, :destroy]
   before_action :set_gon_category_names, only: [:new, :edit]
+  before_action :set_transactions, only: [:index, :data_for_chart]
   respond_to :html, :json
   layout 'modal', only: [:new, :edit]
   load_and_authorize_resource
 
 
   def index
+    @transactions = set_transactions
 
     respond_to do |format|
       format.html
       format.json { render json: TransactionsDatatable.new(view_context, current_user) }
+      format.csv { send_data @transactions.to_csv }
+      format.xls
     end
   end
 
   def data_for_chart
-    transactions = current_user.transactions.includes(:category)
+    transactions = set_transactions
     current_balance = transactions.current_balance
 
     render json: {
@@ -71,5 +75,9 @@ class TransactionsController < ApplicationController
 
     def set_gon_category_names
       gon.user_categories = current_user.categories.pluck(:name)
+    end
+
+    def set_transactions
+      current_user.transactions.includes(:category)
     end
 end

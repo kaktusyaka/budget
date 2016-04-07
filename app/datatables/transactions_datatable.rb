@@ -24,7 +24,7 @@ class TransactionsDatatable
   def data
     transactions.map do |transaction|
       [
-        transaction.category.name,
+        transaction.category_name,
         type( transaction.income),
         transaction.date.strftime('%d/%m/%Y'),
         number_to_currency( transaction.amount ),

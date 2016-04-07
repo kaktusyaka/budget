@@ -11,6 +11,8 @@ class Transaction < ActiveRecord::Base
   validates :income, inclusion: { in: [true, false]}
   validates :description, length: { maximum: 65536 }
 
+  delegate :id, :name, to: :category, prefix: true
+
   scope :income_amount,       ->{ where(income: true) }
   scope :expenditures_amount, ->{ where(income: false) }
   scope :this_month,          ->{ where(date: Date.today.beginning_of_month..Date.today.end_of_month) }
@@ -40,6 +42,15 @@ class Transaction < ActiveRecord::Base
       date = date + 7.days
     end
     data
+  end
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |transaction|
+        csv <<  transaction.attributes.values_at(*column_names)
+      end
+    end
   end
 
   private

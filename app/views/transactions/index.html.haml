@@ -6,6 +6,11 @@
 
 .col-md-12
   %h1 Listing Transactions
+  %p.download-csv
+    Download:
+    = link_to "CSV", transactions_path(format: "csv")
+    |
+    = link_to "Excel", transactions_path(format: "xls")
   .datatable
     %table.table.table-striped.table-bordered.table-hover{ :'data-source' => transactions_url(format: :json) }
       %thead
