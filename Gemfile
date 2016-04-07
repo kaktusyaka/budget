@@ -5,6 +5,7 @@ gem 'activemerchant'
 gem 'airbrake', '~> 5.0'
 gem 'cancancan', '~> 1.10'
 gem 'carrierwave'
+gem 'delayed_job_active_record'
 gem 'factory_girl_rails'
 gem 'faker'
 gem "figaro"
