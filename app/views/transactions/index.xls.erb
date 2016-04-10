@@ -18,7 +18,7 @@ views/products/index.xls.erb
     <% @transactions.each do |transaction| %>
       <Row>
         <Cell><Data ss:Type="Number"><%= transaction.id %></Data></Cell>
-        <Cell><Data ss:Type="Number"><%= transaction.category_id %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= transaction.category.id %></Data></Cell>
         <Cell><Data ss:Type="String"><%= transaction.income ? "Income" : "Expenditure" %></Data></Cell>
         <Cell><Data ss:Type="Number"><%= transaction.amount %></Data></Cell>
         <Cell><Data ss:Type="String"><%= transaction.description %></Data></Cell>
