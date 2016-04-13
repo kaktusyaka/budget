@@ -12,7 +12,10 @@ class TransactionsController < ApplicationController
     respond_to do |format|
       format.html
       format.json { render json: TransactionsDatatable.new(view_context, current_user) }
-      format.csv { send_data @transactions.to_csv }
+      format.csv do
+        ExportToCsvJob.perform_later @transactions.map(&:id), current_user
+        redirect_to transactions_path, notice: "Exporting of transactions data is currently being processed. You'll receive an email once complete."
+      end
       format.xls
     end
   end

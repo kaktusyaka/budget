@@ -43,12 +43,17 @@ class Transaction < ActiveRecord::Base
   end
 
   def self.to_csv
+    attributes = %w{ id category_id type date amount description }
     CSV.generate do |csv|
-      csv << column_names
+      csv << attributes
       all.each do |transaction|
-        csv <<  transaction.attributes.values_at(*column_names)
+        csv <<  attributes.map{ |attr| transaction.send(attr) }
       end
     end
+  end
+
+  def type
+    self.income ? "Income" : "Expenditure"
   end
 
   private
