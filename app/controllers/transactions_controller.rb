@@ -7,16 +7,19 @@ class TransactionsController < ApplicationController
 
 
   def index
-    @transactions = set_transactions
+    transactions = set_transactions.map(&:id)
 
     respond_to do |format|
       format.html
       format.json { render json: TransactionsDatatable.new(view_context, current_user) }
       format.csv do
-        ExportToCsvJob.perform_later @transactions.map(&:id), current_user
-        redirect_to transactions_path, notice: "Exporting of transactions data is currently being processed. You'll receive an email once complete."
+        ExportToCsvJob.perform_later transactions, current_user
+        success_exporte
       end
-      format.xls
+      format.xls do
+        ExportToCsvJob.perform_later(transactions, current_user, false)
+        success_exporte
+      end
     end
   end
 
@@ -81,5 +84,9 @@ class TransactionsController < ApplicationController
 
     def set_transactions
       current_user.transactions.includes(:category)
+    end
+
+    def success_exporte
+      redirect_to transactions_path, notice: "Exporting of transactions data is currently being processed. You'll receive an email once complete."
     end
 end
