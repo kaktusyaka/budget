@@ -1,4 +1,4 @@
-class ExportToCsvJob < ActiveJob::Base
+class ExportTransactionsJob < ActiveJob::Base
   queue_as :default
 
   def perform(transactions, user, csv = true)

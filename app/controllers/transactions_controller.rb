@@ -13,11 +13,11 @@ class TransactionsController < ApplicationController
       format.html
       format.json { render json: TransactionsDatatable.new(view_context, current_user) }
       format.csv do
-        ExportToCsvJob.perform_later transactions, current_user
+        ExportTransactionsJob.perform_later transactions, current_user
         success_exporte
       end
       format.xls do
-        ExportToCsvJob.perform_later(transactions, current_user, false)
+        ExportTransactionsJob.perform_later(transactions, current_user, false)
         success_exporte
       end
     end
