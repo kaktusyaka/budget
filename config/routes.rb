@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :transactions do
-    collection { get :data_for_chart }
+    collection { get :chart_and_new_transaction_data }
   end
   resources :categories do
     collection { post :sort }

@@ -23,14 +23,17 @@ class TransactionsController < ApplicationController
     end
   end
 
-  def data_for_chart
+  def chart_and_new_transaction_data
     transactions = set_transactions
     current_balance = transactions.current_balance
 
     render json: {
       current_balance: current_balance,
       expenditures_by_category: Transaction.expenditures_this_month(transactions).unshift(['Categoty Name', 'Amount']),
-      balances_for_chart: transactions.weekly_balances.unshift(['Week', 'Balance', 'Average'])
+      balances_for_chart: transactions.weekly_balances.unshift(['Week', 'Balance', 'Average']),
+      cannot_create: (cannot? :create, Transaction),
+      quantity_of_transactions: current_user.pricing_plan.quantity_of_transactions,
+      pricing_plan: current_user.pricing_plan.name.capitalize
     }
   end
 

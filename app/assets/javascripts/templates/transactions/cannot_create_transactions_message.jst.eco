@@ -1,0 +1,6 @@
+<div class="center alert fade in alert-error">
+  <button class="close" data-dismiss="alert">×</button>
+  You cann't create more then <%= @quantity_of_transactions %> transactions on <%= @pricing_plan %> pricing plan.
+  Please upgrade your
+  <a href="/pricing_plans"> Pricing plan </a>
+</div>

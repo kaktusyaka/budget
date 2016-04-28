@@ -16,10 +16,14 @@
         drawCallback: (settings) ->
           $.ajax
             method: 'GET'
-            url: '/transactions/data_for_chart'
+            url: '/transactions/chart_and_new_transaction_data'
             success: (data) ->
               $('#current_balance h2 span').text(data.current_balance)
               GoogleChart.drowCharts(data.expenditures_by_category, data.balances_for_chart)
+              if data.cannot_create
+                $('#new-transaction').remove()
+                $('#flash_message').prepend JST['templates/transactions/cannot_create_transactions_message']({ quantity_of_transactions: data.quantity_of_transactions, pricing_plan: data.pricing_plan })
+
         ajax:
           url: $(@).data('source')
       })

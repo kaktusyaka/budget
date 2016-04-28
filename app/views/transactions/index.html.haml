@@ -1,9 +1,3 @@
-- if cannot? :create, Transaction
-  .center.alert.fade.in.alert-info
-    %button.close{"data-dismiss" => "alert"}×
-    You cann't create more then #{current_user.pricing_plan.quantity_of_transactions} transactions on #{current_user.pricing_plan.name.capitalize} pricing plan.
-    Please upgrade your #{ link_to "Pricing plan", pricing_plans_path }
-
 .col-md-12
   %h1 Listing Transactions
   %p.download-csv
@@ -24,7 +18,7 @@
       %tbody
   - if can? :create, Transaction
     %br
-      = link_to 'New Transaction', new_transaction_path, data: { :'remote-target' => '#transactions-form .modal-content' }, class: 'open-transaction-js', title: "New"
+      = link_to 'New Transaction', new_transaction_path, data: { :'remote-target' => '#transactions-form .modal-content' }, class: 'open-transaction-js', id: 'new-transaction', title: "New"
 
 .col-md-12#current_balance
   %h2
