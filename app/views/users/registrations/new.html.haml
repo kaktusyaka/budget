@@ -7,25 +7,28 @@
     .form-devise
       = form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: 'shift-left' } do |f|
         = devise_error_messages!
-        %div
-          = f.label :first_name
-          = f.text_field :first_name, autofocus: true
-        %div
-          = f.label :last_name
-          = f.text_field :last_name, autofocus: true
-        %div
-          = f.label :email
-          = f.email_field :email, autofocus: true
-        %div
-          = f.label :password
-          = f.password_field :password, autocomplete: "off"
-          - if @minimum_password_length
-            %em
-              (#{@minimum_password_length} characters minimum)
-        %div
-          = f.label :password_confirmation
-          = f.password_field :password_confirmation, autocomplete: "off"
-        %div
-          = f.submit "Sign up", class: 'btn'
-        = render "devise/shared/links"
+        .right-col
+          = render "devise/shared/social_links"
+        .left-col
+          %div
+            = f.label :first_name
+            = f.text_field :first_name, autofocus: true
+          %div
+            = f.label :last_name
+            = f.text_field :last_name, autofocus: true
+          %div
+            = f.label :email
+            = f.email_field :email, autofocus: true
+          %div
+            = f.label :password
+            = f.password_field :password, autocomplete: "off"
+            - if @minimum_password_length
+              %em
+                (#{@minimum_password_length} characters minimum)
+          %div
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation, autocomplete: "off"
+          %div
+            = f.submit "Sign up", class: 'btn'
+          = render "devise/shared/links"
 

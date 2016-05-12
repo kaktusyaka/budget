@@ -5,16 +5,19 @@
       %small= "with budget, twitter or facebook"
   .form-devise
     = form_for resource, as: resource_name, url: session_path(resource_name), html: { class: 'shift-left' } do |f|
-      %div
-        = f.label :email
-        = f.email_field :email, autofocus: true
-      %div
-        = f.label :password
-        = f.password_field :password, autocomplete: 'off'
-      - if devise_mapping.rememberable?
-        .form-type-checkbox
-          = f.check_box :remember_me
-          %label{ for: :remember_me }= "Remember me"
-      %div
-        = f.submit "Sign in", class: 'btn'
-      = render "devise/shared/links"
+      .right-col
+        = render "devise/shared/social_links"
+      .left-col
+        %div
+          = f.label :email
+          = f.email_field :email, autofocus: true
+        %div
+          = f.label :password
+          = f.password_field :password, autocomplete: 'off'
+        - if devise_mapping.rememberable?
+          .form-type-checkbox
+            = f.check_box :remember_me
+            %label{ for: :remember_me }= "Remember me"
+        %div
+          = f.submit "Sign in", class: 'btn'
+        = render "devise/shared/links"

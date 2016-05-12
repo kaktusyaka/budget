@@ -4,25 +4,29 @@
   = devise_error_messages!
   .form-group
     = image_tag f.object.photo.try(:file_url, :thumb)
-  = f.fields_for :photo, f.object.photo do |p|
-    .form-group.toggle_photo
-      = p.label :file, "Photo", class: 'col-sm-2 control-label'
+  .right-col-edit
+    = render "devise/shared/social_links"
+  .left-col
+    = f.fields_for :photo, f.object.photo do |p|
+      .form-group.toggle_photo
+        = p.label :file, "Photo", class: 'col-sm-2 control-label'
+        .col-sm-3
+          = p.file_field :file, class: 'form-control'
+        .col-sm-3
+          = link_to "#", title: "remote photo url", remote: true do
+            %span.glyphicon.glyphicon.glyphicon-link
+      .form-group.toggle_photo.hidden
+        = p.label :remote_file_url, "Remote photo url", class: 'col-sm-2 control-label'
+        .col-sm-3
+          = p.text_field :remote_file_url, class: 'form-control'
+        .col-sm-3
+          = link_to "#", title: "load photo from your device", remote: true do
+            %span.glyphicon.glyphicon-folder-open
+    .form-group
+      = f.label :first_name, class: 'col-sm-2 control-label'
       .col-sm-3
-        = p.file_field :file, class: 'form-control'
-      .col-sm-3
-        = link_to "#", title: "remote photo url", remote: true do
-          %span.glyphicon.glyphicon.glyphicon-link
-    .form-group.toggle_photo.hidden
-      = p.label :remote_file_url, "Remote photo url", class: 'col-sm-2 control-label'
-      .col-sm-3
-        = p.text_field :remote_file_url, class: 'form-control'
-      .col-sm-3
-        = link_to "#", title: "load photo from your device", remote: true do
-          %span.glyphicon.glyphicon-folder-open
-  .form-group
-    = f.label :first_name, class: 'col-sm-2 control-label'
-    .col-sm-3
-      = f.text_field :first_name, class: 'form-control'
+        = f.text_field :first_name, class: 'form-control'
+
   .form-group
     = f.label :last_name, class: 'col-sm-2 control-label'
     .col-sm-3
@@ -51,7 +55,6 @@
     .col-sm-offset-2.col-sm-3
       = f.submit "Update", class: 'btn btn-default'
 
-= render "devise/shared/social_links"
 .col-sm-offset-2.col-sm-3
   %h3 Cancel my account
   %p

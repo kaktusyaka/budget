@@ -5,15 +5,18 @@
     = form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'shift-left' } do |f|
       = devise_error_messages!
       = f.hidden_field :reset_password_token
-      %div
-        = f.label :password, "New password"
-        = f.password_field :password, autofocus: true, autocomplete: "off"
-        - if @minimum_password_length
-          %em
-            (#{@minimum_password_length} characters minimum)
-      %div
-        = f.label :password_confirmation, "Confirm new password"
-        = f.password_field :password_confirmation, autocomplete: "off"
-      %div
-        = f.submit "Change password", class: 'btn'
-      = render "devise/shared/links"
+      .right-col
+        = render "devise/shared/social_links"
+      .left-col
+        %div
+          = f.label :password, "New password"
+          = f.password_field :password, autofocus: true, autocomplete: "off"
+          - if @minimum_password_length
+            %em
+              (#{@minimum_password_length} characters minimum)
+        %div
+          = f.label :password_confirmation, "Confirm new password"
+          = f.password_field :password_confirmation, autocomplete: "off"
+        %div
+          = f.submit "Change password", class: 'btn'
+        = render "devise/shared/links"
