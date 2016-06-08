@@ -1,0 +1,13 @@
+.wow.fadeInUp{"data-wow-delay" => "0.9s", "data-wow-offset" => "0"}
+  %form.form-inline
+    - if current_user
+      .form-group
+        = link_to "Update Your Plan", pricing_plans_path, class: "btn btn-primary btn-lg btn-blue"
+      .form-group
+        = link_to "View Transactions", transactions_path, class: "btn btn-primary btn-lg btn-white"
+    - else
+      .form-group
+        = link_to "Register", new_user_registration_path, class: "btn btn-primary btn-lg btn-white"
+      .form-group
+        = link_to "Subscribe Now", "#pricing", class: "btn btn-primary btn-lg btn-white"
+

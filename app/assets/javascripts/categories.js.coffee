@@ -56,8 +56,7 @@
             else
               $(".ui-sortable li#category_#{data.id}").find(".category-name").text(data.name)
           error: (xhr, ajaxOptions, thrownError) ->
-            $('#categories-form').find('input').removeClass('border-danger')
-            $('#categories-form').find('small').remove()
+            Forms.submitting(self)
 
             errors = $.parseJSON(xhr.responseText).errors
             errorMessage = []

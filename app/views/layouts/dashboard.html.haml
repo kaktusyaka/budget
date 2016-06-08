@@ -1,0 +1,37 @@
+!!!
+%html
+  %head
+    %title Budget
+    = include_gon
+    = stylesheet_link_tag 'application', media: 'all'
+    = csrf_meta_tags
+  %body{ body_attributes }
+    %header#header
+      %nav.navbar.navbar-fixed-top{:role => "banner"}
+        .container
+          .navbar-header
+            %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+              %span.sr-only Toggle navigation
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+            = link_to "SaveBudget", root_path, class: "navbar-brand"
+          .collapse.navbar-collapse.navbar-right
+            %ul.nav.navbar-nav
+              %li.active
+                = link_to "Home", "#header"
+              %li
+                = link_to "Feature", "#feature"
+              %li
+                = link_to "Gallery", "#gallery"
+              %li
+                = link_to "Price & Plan", "#pricing"
+              %li
+                = link_to "Our Team", "#our-team"
+              %li
+                = link_to "Contact", "#contact"
+        / /.container
+      / /nav
+    / /header
+    = yield
+  = javascript_include_tag 'application'

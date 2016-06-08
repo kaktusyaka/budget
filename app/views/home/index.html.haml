@@ -1,2 +1,240 @@
-%h1 Hello
-%p Find me in app/views/home/index
+.slider
+  #about-slider
+    #carousel-slider.carousel.slide{"data-ride" => "carousel"}
+      / Indicators
+      %ol.carousel-indicators.visible-xs
+        %li.active{"data-slide-to" => "0", "data-target" => "#carousel-slider"}
+        %li{"data-slide-to" => "1", "data-target" => "#carousel-slider"}
+        %li{"data-slide-to" => "2", "data-target" => "#carousel-slider"}
+      .carousel-inner
+        .item.active
+          = image_tag "dash_slider/1.jpg", class: "img-responsive"
+          .carousel-caption
+            .wow.fadeInUp{"data-wow-delay" => "0.3s", "data-wow-offset" => "0"}
+              %h2
+                %span Family Budget Online
+            .wow.fadeInUp{"data-wow-delay" => "0.6s", "data-wow-offset" => "0"}
+              %p A simple way to make your budget manageable
+            = render "slider_buttons"
+        .item
+          = image_tag "dash_slider/2.jpg", class: "img-responsive"
+          .carousel-caption
+            .wow.fadeInUp{"data-wow-delay" => "1.0s", "data-wow-offset" => "0"}
+              %h2 Simple & Intuitive Interface
+            .wow.fadeInUp{"data-wow-delay" => "1.3s", "data-wow-offset" => "0"}
+              %p It requires no training, not overloaded with unnecessary information
+            = render "slider_buttons"
+        .item
+          = image_tag "dash_slider/3.jpg", class: "img-responsive"
+          .carousel-caption
+            .wow.fadeInUp{"data-wow-delay" => "0.3s", "data-wow-offset" => "0"}
+              %h2 Is Free!
+            .wow.fadeInUp{"data-wow-delay" => "0.6s", "data-wow-offset" => "0"}
+              %p Registration and basic functions are free of charge
+            = render "slider_buttons"
+      = link_to  "#carousel-slider", class: "left carousel-control hidden-xs", "data-slide" => "prev" do
+        %i.fa.fa-angle-left
+      = link_to  "#carousel-slider", class: "right carousel-control hidden-xs", "data-slide" => "next" do
+        %i.fa.fa-angle-right
+    / /#carousel-slider
+  / /#about-slider
+/ /#slider
+#feature
+  .container
+    .row
+      .text-center
+        %h3 Features
+        %p
+          you will be able to systematize and organize all of your personal financial information
+          %br using a specially designed personal finance online SaveBudget
+      .col-md-3.wow.fadeInRight{"data-wow-delay" => "0.3s", "data-wow-offset" => "0"}
+        .text-center
+          .hi-icon-wrap.hi-icon-effect
+            %i.fa.fa-table
+            %h2 Easy Tables
+            %p Easy to analyze the result of your work, to identify sphere for improvement
+      .col-md-3.wow.fadeInRight{"data-wow-delay" => "0.3s", "data-wow-offset" => "0"}
+        .text-center
+          .hi-icon-wrap.hi-icon-effect
+            %i.fa.fa-file-excel-o
+            %h2 Data Export
+            %p You can export data in CSV/XLS format sending on your email
+      .col-md-3.wow.fadeInLeft{"data-wow-delay" => "0.3s", "data-wow-offset" => "0"}
+        .text-center
+          .hi-icon-wrap.hi-icon-effect
+            %i.fa.fa-line-chart
+            %h2 Visualization
+            %p Charts and graphs help you to see the complete picture of personal finance
+      .col-md-3.wow.fadeInLeft{"data-wow-delay" => "0.3s", "data-wow-offset" => "0"}
+        .text-center
+          .hi-icon-wrap.hi-icon-effect
+            %i.fa.fa-calendar-o
+            %h2 Events Calendar
+            %p The system allows you to schedule recurring payments and forecast future costs
+#gallery
+  .container
+    .text-center
+      %h3 Gallery
+      %p
+        Using the Save Budget you can properly plan  a home budget,
+        %br and manage family finances
+    .row
+      %figure.effect-chico
+        .col-md-3.wow.fadeInUp{"data-wow-delay" => "0.3s", "data-wow-offset" => "0"}
+          = link_to "/assets/work/1.jpg", class: "flipLightBox" do
+            = image_tag "work/1.jpg", class: "img-responsive"
+      %figure.effect-chico
+        .col-md-3.wow.fadeInUp{"data-wow-delay" => "0.3s", "data-wow-offset" => "0"}
+          = link_to "/assets/work/2.jpg", class: "flipLightBox" do
+            = image_tag "work/2.jpg", class: "img-responsive"
+      %figure.effect-chico
+        .col-md-3.wow.fadeInDown{"data-wow-delay" => "0.3s", "data-wow-offset" => "0"}
+          = link_to "/assets/work/3.jpg", class: "flipLightBox" do
+            = image_tag "work/3.jpg", class: "img-responsive"
+      %figure.effect-chico
+        .col-md-3.wow.fadeInDown{"data-wow-delay" => "0.3s", "data-wow-offset" => "0"}
+          = link_to "/assets/work/4.jpg", class: "flipLightBox" do
+            = image_tag "work/4.jpg", class: "img-responsive"
+  .gallery
+    .container
+      .row
+        %figure.effect-chico
+          .col-md-3.wow.fadeInUp{"data-wow-delay" => "0.3s", "data-wow-offset" => "0"}
+            = link_to "/assets/work/5.jpg", class: "flipLightBox" do
+              = image_tag "work/5.jpg", class: "img-responsive"
+        %figure.effect-chico
+          .col-md-3.wow.fadeInUp{"data-wow-delay" => "0.3s", "data-wow-offset" => "0"}
+            = link_to "/assets/work/6.jpg", class: "flipLightBox" do
+              = image_tag "work/6.jpg", class: "img-responsive"
+        %figure.effect-chico
+          .col-md-3.wow.fadeInDown{"data-wow-delay" => "0.3s", "data-wow-offset" => "0"}
+            = link_to "/assets/work/7.jpg", class: "flipLightBox" do
+              = image_tag "work/7.jpg", class: "img-responsive"
+        %figure.effect-chico
+          .col-md-3.wow.fadeInDown{"data-wow-delay" => "0.3s", "data-wow-offset" => "0"}
+            = link_to "/assets/work/8.jpg", class: "flipLightBox" do
+              = image_tag "work/8.jpg", class: "img-responsive"
+/ /#gallery
+.parallax-window
+  .col-md-6.col-md-offset-3
+    .text-center
+      .wow.bounceIn{"data-wow-delay" => "0.2s", "data-wow-offset" => "0"}
+        %h2 The family budget under the control
+      .wow.bounceIn{"data-wow-delay" => "0.6s", "data-wow-offset" => "0"}
+        %p
+          Start to conduct home accounting and your family budget
+          %br
+            will be under the control!
+  .sub-parallax
+    .text-center
+      .col-md-12
+        = render "start_now_buttons"
+/ /#parallax-window
+#pricing
+  .container
+    .text-center
+      %h3 Pricing Table
+      %p
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+        Whether you're new to managing your waist or looking for a platform
+        %br
+          for your business, SaveBudget has the right plan for you
+    .pricing-area.text-center
+      .row
+        - PricingPlan.all.each do |pricing_plan|
+          .col-sm-6.col-md-3.plan.price-four.wow.fadeInLeft
+            %ul
+              %li.heading-four
+                %h2=pricing_plan.name
+                %span= number_to_currency pricing_plan.price
+              %li
+                - if pricing_plan.premium?
+                  Unlimate
+                - else
+                  #{pricing_plan.quantity_of_categories} categories
+              %li
+                - if pricing_plan.premium?
+                  Unlimate
+                - else
+                  #{pricing_plan.quantity_of_transactions} transactions
+              %li 24/7 Support
+              %li.plan-action
+                - if current_user
+                  - unless pricing_plan.name.eql?(current_user.pricing_plan.name)
+                    - if pricing_plan.price < current_user.pricing_plan.price
+                      = link_to "Downgrade", downgrade_pricing_plan_path(pricing_plan), class: 'btn btn-primary'
+                    - else
+                      = link_to "Buy now", checkout_pricing_plan_path(pricing_plan), class: 'btn btn-primary'
+
+                - else
+                  = link_to "Sign up", new_user_registration_path, class: "btn btn-primary"
+    / /pricing-area
+/ /#pricing
+#our-team
+  .container
+    .text-center
+      %h3 Our Team
+      %p
+        We love working with customers to exceed their expectations
+        %br & we love working together!
+    .row
+      .col-md-4.wow.fadeInUp{"data-wow-delay" => "0.3s", "data-wow-offset" => "0"}
+        .text-center
+          = image_tag "team/1.png"
+          %h2 John Doe
+          %h4 Founder & CEO
+      .col-md-4.wow.bounceInDown{"data-wow-delay" => "0.3s", "data-wow-offset" => "0"}
+        .text-center
+          = image_tag "team/2.png"
+          %h2 Nadiia Shevtsova
+          %h4 RoR Developer
+%footer
+  #contact
+    .container
+      .text-center
+        %h3 Contact Us
+        %p Our team are standing by to help you with questions
+    .container
+      .row
+        .col-md-4.wow.fadeInUp{"data-wow-delay" => "0.2s", "data-wow-offset" => "0"}
+          %h2 Contact us any time
+          %p
+            Whether you’re looking for answers, would like to solve a problem,
+            or just want to let us know how we did, you’ll find many ways
+            to contact us right here.
+            We’ll help you resolve your issues quickly and easily,
+            getting you back to more important things, like relaxing on your new sofa.
+        .col-md-4.wow.fadeInUp{"data-wow-delay" => "0.4s", "data-wow-offset" => "0"}
+          %h2 Contact Info
+          %ul
+            %li
+            %hr
+              %li
+                %i.fa.fa-phone.fa-2x
+                +70 000 000000
+              %hr
+                %li
+                  %i.fa.fa-envelope.fa-2x
+                  info@savebadget.com
+        .col-md-4.wow.fadeInUp{"data-wow-delay" => "0.6s", "data-wow-offset" => "0"}
+          #flash_message
+            - flash.each do |name, msg|
+              %div{ class: "center alert fade in alert-#{ name }" }
+                %button.close{ "data-dismiss" => "alert" }×
+                = content_tag :div, msg, id: "flash_#{name}"
+          %form.form-inline#contact_us_form
+            .form-group
+              = text_field_tag :'contact_us[name]', nil, class: 'form-control', placeholder: "name"
+            .form-group
+              = email_field_tag :'contact_us[email]', nil, class: 'form-control', placeholder: "email"
+            .form-group
+              = text_field_tag :'contact_us[subject]', nil, class: 'form-control', placeholder: "Subject"
+            .form-group
+              = text_area_tag :'contact_us[body]', nil, class: 'form-control', rows: 5
+            .form-group
+              %button.btn.btn-primary.btn-lg{:type => "submit"} Submit Message
+  / /#contact
+  .text-center
+    .copyright
+      \&copy; 2016
+      All Rights Reserved.

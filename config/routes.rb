@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', registrations: 'users/registrations' }
+  resources :home, only: [:index] do
+    collection { post :send_contact_us }
+  end
   root 'home#index'
 
   # Example of regular route:

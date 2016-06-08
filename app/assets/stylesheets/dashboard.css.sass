@@ -1,0 +1,627 @@
+/* ==== Google font ====
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700,100)
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,600)
+
+//@import url('font-awesome.css')
+
+/* ==== overwrite bootstrap standard ====
+@import url('overwrite.css')
+
+@import url('animate.css')
+
+/*************************
+ ********Typography******
+ **************************
+
+body
+  background: #fff
+  font-family: 'Roboto', Arial, sans-serif
+  color: #333
+  line-height: 1.6em
+  overflow-x: hidden
+
+h1, h2, h3, h4, h5, h6
+  font-weight: 500
+  font-family: 'Roboto'
+  color: #000
+
+h1
+  font-size: 36px
+  color: #fff
+
+h2
+  font-size: 20px
+
+h3
+  font-size: 16px
+  color: #787878
+  font-weight: 400
+  line-height: 24px
+
+h4
+  font-size: 16px
+
+a
+  color: #0BA9F9
+  -webkit-transition: color 300ms, background-color 300ms
+  -moz-transition: color 300ms, background-color 300ms
+  -o-transition: color 300ms, background-color 300ms
+  transition: color 300ms, background-color 300ms
+  &:hover, &:focus
+    color: rgba(0, 0, 0, 0.85)
+    text-decoration: none
+
+hr
+  border-top: 1px solid #e5e5e5
+  border-bottom: 1px solid #fff
+
+.btn-primary
+  margin-top: 30px
+
+.btn
+  display: inline-block
+  padding: 10px 20px
+  margin-bottom: 0
+  font-size: 16px
+  font-weight: normal
+  line-height: 1.42857143
+  text-align: center
+  white-space: nowrap
+  vertical-align: middle
+  -ms-touch-action: manipulation
+  touch-action: manipulation
+  cursor: pointer
+  -webkit-user-select: none
+  -moz-user-select: none
+  -ms-user-select: none
+  user-select: none
+  background-image: none
+  border: 1px solid transparent
+  border-radius: 4px
+  background-color: #0BA9F9
+  &:hover
+    color: #fff
+    background-color: #0BA9F9
+    border-color: #0BA9F9
+
+/*************************
+ ********Header******
+ **************************
+
+.navbar-fixed-top .navbar-toggle .icon-bar
+  background-color: #fff
+
+.navbar > .container .navbar-brand
+  margin-left: 0
+
+.navbar-brand
+  padding: 0
+  margin: 0
+
+.navbar-header a.navbar-brand
+  color: #111
+  font-family: 'Roboto'
+  &:hover
+    color: #fff
+
+.navbar
+  border-radius: 0
+  margin-bottom: 0
+  background: #151515
+  padding: 21px 0
+  padding-bottom: 0
+
+.navbar-nav
+  margin-top: 12px
+  > li
+    margin-left: 20px
+    padding-bottom: 28px
+
+.navbar-fixed-top
+  .navbar-nav > li > a
+    padding: 5px 12px
+    margin: 0
+    border-radius: 3px
+    color: #111
+    line-height: 24px
+    display: inline-block
+    font-weight: 500
+    font-size: 18px
+    font-family: 'Roboto'
+    &:hover
+      background: #0BA9F9
+      color: #fff
+  border: none
+  background: #0BA9F9
+  .navbar-brand
+    font-size: 36px
+    line-height: 50px
+    color: #fff
+  .navbar-nav >
+    .active > a
+      background-color: #111
+      color: #fff
+      &:hover, &:focus
+        background-color: #111
+        color: #fff
+    .open > a
+      background-color: #111
+      color: #fff
+      &:hover, &:focus
+        background-color: #111
+        color: #fff
+
+/*************************
+ ********Slider******
+ **************************
+
+.slider
+  position: relative
+  padding-top: 70px
+
+#carousel-slider
+  position: relative
+  .carousel-indicators
+    bottom: -25px
+    li
+      border: 1px solid #ffbd20
+  a i
+    border: 1px solid #0BA9F9
+    border-radius: 50%
+    font-size: 30px
+    height: 50px
+    padding: 8px
+    position: absolute
+    top: 50%
+    width: 50px
+    color: #0BA9F9
+    &:hover
+      background: #0BA9F9
+      color: #fff
+      border: 1px solid #0BA9F9
+  .carousel-control
+    width: inherit
+    &.left i
+      left: 50px
+      top: 265px
+    &.right i
+      right: 50px
+      top: 265px
+    &.left, &.right
+      background: none
+
+.carousel-caption
+  position: absolute
+  right: 15%
+  bottom: 150px
+  font-size: 40px
+  left: 15%
+  z-index: 10
+  padding-bottom: 0px
+  color: #fff
+  text-align: center
+  h2
+    font-size: 60px
+    color: #0BA9F9
+    span
+      font-size: 60px
+      color: #fff
+  p
+    font-size: 30px
+    margin-top: 30px
+    color: #fff
+
+.carousel-inner .form-inline .form-group
+  .btn-blue
+    padding: 20px 60px
+    font-size: 25px
+    background: #0BA9F9
+    color: #fff
+    &:hover
+      color: #0BA9F9
+      background: #fff
+      -webkit-transition: color 300ms, background-color 300ms
+      -moz-transition: color 300ms, background-color 300ms
+      -o-transition: color 300ms, background-color 300ms
+      transition: color 300ms, background-color 300ms
+  .btn-white
+    padding: 20px 60px
+    font-size: 25px
+    background: #fff
+    color: #0BA9F9
+    &:hover
+      color: #fff
+      background: #0BA9F9
+      -webkit-transition: color 300ms, background-color 300ms
+      -moz-transition: color 300ms, background-color 300ms
+      -o-transition: color 300ms, background-color 300ms
+      transition: color 300ms, background-color 300ms
+
+/*************************
+ ********feature******
+ **************************
+
+#feature
+  padding-top: 90px
+  background: #fff
+  padding-bottom: 50px
+
+.hi-icon-effect
+  padding-bottom: 30px
+  padding-left: 10px
+  padding-right: 10px
+  &:hover
+    border-radius: 6px
+    background: #f4f4f4
+    -webkit-transition: color 300ms, background-color 300ms
+    -moz-transition: color 300ms, background-color 300ms
+    -o-transition: color 300ms, background-color 300ms
+    transition: color 300ms, background-color 300ms
+  i.fa:hover
+    background: #fff
+    color: #0BA9F9
+    -webkit-transition: color 300ms, background-color 300ms
+    -moz-transition: color 300ms, background-color 300ms
+    -o-transition: color 300ms, background-color 300ms
+    transition: color 300ms, background-color 300ms
+
+.text-center
+  i
+    font-size: 30px
+    margin-top: 50px
+    margin-bottom: 30px
+    color: #fff
+    padding: 50px
+    background: #0BA9F9
+    border-radius: 50%
+  h2
+    margin-top: 20px
+    margin-bottom: 20px
+  h3
+    font-size: 35px
+    margin-top: 50px
+    margin-bottom: 20px
+    color: #111
+  p
+    margin-bottom: 30px
+
+/*************************
+ ********services******
+ **************************
+
+#gallery
+  padding-top: 70px
+  padding-bottom: 70px
+  background: #f4f4f4
+  img
+    border-radius: 8px
+
+.gallery
+  margin-top: 60px
+  margin-bottom: 30px
+
+#gallery .text-center
+  padding-top: 20px
+  margin-bottom: 50px
+  padding-bottom: 20px
+
+figure.effect-chico
+  img
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s
+    transition: opacity 0.35s, transform 0.35s
+    -webkit-transform: scale(1.12)
+    transform: scale(1.12)
+  &:hover img
+    opacity: 0.5
+    -webkit-transform: scale(1)
+    transform: scale(1)
+
+/*************************
+ ********parallax******
+ **************************
+
+.parallax-window
+  min-height: 500px
+  background: transparent
+  .text-center
+    h2
+      font-size: 60px
+      margin-top: 90px
+      padding-top: 5px
+      padding-bottom: 5px
+      color: #fff
+    p
+      color: #fff
+      font-size: 20px
+
+.sub-parallax .form-inline .form-group
+  .btn-blue
+    padding: 20px 90px
+    font-size: 20px
+    background: #fff
+    color: #0BA9F9
+    border-color: #0BA9F9
+    &:hover
+      background: #0BA9F9
+      color: #fff
+      -webkit-transition: color 300ms, background-color 300ms
+      -moz-transition: color 300ms, background-color 300ms
+      -o-transition: color 300ms, background-color 300ms
+      transition: color 300ms, background-color 300ms
+  .btn-white
+    padding: 20px 90px
+    font-size: 20px
+    &:hover
+      background: #fff
+      color: #0BA9F9
+      -webkit-transition: color 300ms, background-color 300ms
+      -moz-transition: color 300ms, background-color 300ms
+      -o-transition: color 300ms, background-color 300ms
+      transition: color 300ms, background-color 300ms
+
+/*************************
+ ********pricing******
+ **************************
+
+#pricing
+  padding-top: 90px
+  background: #fff
+  padding-bottom: 40px
+  .text-center p
+    margin-bottom: 50px
+    padding-bottom: 20px
+
+.pricing-area
+  h2
+    font-weight: 300
+    margin-top: 0
+    margin-bottom: 15px
+    font-size: 25px
+    color: #fff
+  span
+    font-weight: 700
+    font-size: 18px
+    color: #fff
+
+.plan
+  position: relative
+  margin-bottom: 70px
+
+.pricing-area
+  ul
+    background: #FAFAFA
+    padding: 0
+    margin: 0
+    li
+      list-style: none
+      padding: 15px 0
+      font-size: 16px
+      font-weight: 400
+      &:nth-child(even)
+        background: #f5f5f5
+  .price-three img, .price-six img
+    position: absolute
+    right: 15px
+    top: 0
+  .heading-one, .heading-two, .heading-three
+    padding: 17px 0
+  .heading-one, .heading-two, .heading-three, .heading-four, .heading-five, .heading-six, .heading-seven
+    margin-left: -10px
+    border-radius: 8px
+  .heading-one:hover, .heading-two:hover, .heading-three:hover, .heading-four:hover, .heading-five:hover, .heading-six:hover, .heading-seven:hover
+    background-color: #111
+    -webkit-transition: color 300ms, background-color 300ms
+    -moz-transition: color 300ms, background-color 300ms
+    -o-transition: color 300ms, background-color 300ms
+    transition: color 300ms, background-color 300ms
+  .heading-one, .price-one .plan-action .btn-primary
+    background: #e24f43
+  .heading-two, .price-two .plan-action .btn-primary
+    background: #27AE60
+  .heading-three, .price-three .plan-action .btn-primary
+    background: #f39c12
+  .heading-four, .price-four .plan-action .btn-primary, .heading-five, .price-five .plan-action .btn-primary
+    background: #0BA9F9
+  .heading-six, .price-six .plan-action .btn-primary
+    background: #e24f43
+  .heading-seven, .price-seven .plan-action .btn-primary
+    background: #0BA9F9
+  .bg
+    background: #fafafa
+  .heading-one h3:before
+    border-color: #bf4539 transparent transparent
+  .heading-two h3:before
+    border-color: #1f8c4d transparent transparent
+  .heading-three h3:before
+    border-color: #d4880f transparent transparent
+  .heading-four h3:before, .heading-five h3:before
+    border-color: #424242 transparent transparent
+  .heading-six h3:before
+    border-color: #bf4539 transparent transparent
+  .heading-seven h3:before
+    border-color: #424242 transparent transparent
+  h3:before
+    border-color: #D4880F transparent transparent
+    border-radius: 5px 0 0 0px
+    border-style: solid
+    border-width: 12px
+    content: ""
+    height: 0
+    left: 4px
+    position: absolute
+    top: 78px
+    width: 0
+    z-index: -999
+
+.small-pricing h3
+  &:after
+    height: 94px
+  &:before
+    top: 74px
+
+.plan-action
+  height: 40px
+
+.pricing-area
+  .plan-action .btn-primary
+    position: relative
+    padding: 5px 20px
+    color: #fff
+    margin-top: 5px
+    &:hover
+      border: none
+  .price-two .plan-action .btn-primary
+    &:before, &:after
+      border-color: #1f8c4d transparent transparent
+  .price-three .plan-action .btn-primary
+    &:before, &:after
+      border-color: #d4880f transparent transparent
+  .price-four .plan-action .btn-primary
+    &:before, &:after
+      border-color: #0BA9F9 transparent transparent
+      right: -9px
+  .price-five .plan-action .btn-primary
+    &:before, &:after
+      border-color: #0BA9F9 transparent transparent
+      right: -9px
+  .price-seven .plan-action .btn-primary
+    &:before, &:after
+      border-color: #0BA9F9 transparent transparent
+      right: -9px
+  .price-six .plan-action .btn-primary
+    &:before, &:after
+      border-color: #bf4539 transparent transparent
+      right: -9px
+
+/*************************
+ ********our team******
+ **************************
+
+#our-team
+  padding-top: 70px
+  padding-bottom: 70px
+  background: #f4f4f4
+  h4
+    color: #0BA9F9
+  .text-center
+    padding-top: 20px
+    margin-bottom: 30px
+    padding-bottom: 10px
+  .team img
+    border-radius: 8px
+
+/*************************
+ ********footer******
+ **************************
+
+footer
+  background: #f4f4f4
+  padding-bottom: 20px
+
+#contact
+  background: url('map.jpg')
+  padding-top: 70px
+  padding-bottom: 80px
+  .text-center
+    padding-top: 20px
+    margin-bottom: 30px
+    padding-bottom: 10px
+  ul
+    list-style: none
+    margin-left: -40px
+    font-size: 13px
+  h2
+    color: #000
+    margin-bottom: 30px
+    font-size: 25px
+
+.form-inline
+  margin-top: 15px
+  margin-bottom: 15px
+
+#contact_us_name, #contact_us_email, #contact_us_subject, #contact_us_body
+  margin-bottom: 15px
+
+.form-inline .form-group input[type="text"]
+  border-radius: 6px
+  width: 172px
+  margin-right: 50px
+
+#contact_us_email
+  border-radius: 6px
+  width: 172px
+  margin-right: 50px
+  width: 188px
+
+.form-inline .form-group textarea, #contact_us_subject
+  width: 360px
+
+.sub-footer
+  form
+    margin-top: 60px
+    margin-bottom: 30px
+  .form-inline .form-group button
+    &[type="purchase"]
+      padding: 20px 90px
+      font-size: 25px
+      &:hover
+        background: #fff
+        color: #0BA9F9
+        -webkit-transition: color 300ms, background-color 300ms
+        -moz-transition: color 300ms, background-color 300ms
+        -o-transition: color 300ms, background-color 300ms
+        transition: color 300ms, background-color 300ms
+    &[type="subscribe"]
+      padding: 20px 90px
+      font-size: 25px
+      background: #fff
+      color: #0BA9F9
+      border-color: #0BA9F9
+      &:hover
+        background: #0BA9F9
+        color: #fff
+        -webkit-transition: color 300ms, background-color 300ms
+        -moz-transition: color 300ms, background-color 300ms
+        -o-transition: color 300ms, background-color 300ms
+        transition: color 300ms, background-color 300ms
+
+ul.social-network
+  list-style: none
+  margin-top: 20px
+  padding: 10px
+  transition: all 0.3s ease-in-out
+  -moz-transition: all 0.3s ease-in-out
+  -webkit-transition: all 0.3s ease-in-out
+  -o-transition: all 0.3s ease-in-out
+
+.social-icon
+  text-align: center
+  margin-bottom: 30px
+
+ul.social-network li
+  display: inline
+  margin: 0 18px
+  font-size: 25px
+  a
+    color: #d0d0d0
+    text-align: center
+
+.social-network li:hover
+  .fa-twitter
+    color: #00abf0
+  .fa-facebook
+    color: #39579a
+  .fa-google-plus
+    color: #eb8984
+  .fa-pinterest
+    color: #c9171e
+  .fa-linkedin
+    color: #0077b5
+  .fa-youtube-play
+    color: #C84941
+  .fa-dribbble
+    color: #EA4C89
+  .fa-pinterest-square
+    color: #EA4B49
+

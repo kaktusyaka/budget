@@ -59,8 +59,7 @@
             Notifications.success(data.success)
             table.ajax.reload()
           error: (xhr, ajaxOptions, thrownError) ->
-            $('#transactions-form').find('input, textarea').removeClass('border-danger')
-            $('#transactions-form').find('small').remove()
+            Forms.submitting(self)
 
             errors = $.parseJSON(xhr.responseText).errors
             errorMessage = []
