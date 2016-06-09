@@ -240,7 +240,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook, "1516145095347688", "db26a9d7fcc65fe0ac004ceb76a850a9"
-  config.omniauth :twitter, "cVzRzqzE6t922xd6cf22LnBsH", "4eB7XesTkF0mckSN8euEAFHb9Dc5uBhf37w8BWXs4tlg70fkjB"
+  config.omniauth :twitter, Figaro.env.twitter_app_key, Figaro.env.twitter_app_secret
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
