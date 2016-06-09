@@ -112,7 +112,7 @@ hr
   padding: 21px 0
   padding-bottom: 0
 
-.navbar-nav
+.collapse.navbar-collapse.navbar-right .navbar-nav
   margin-top: 12px
   > li
     margin-left: 20px
@@ -146,11 +146,16 @@ hr
         background-color: #111
         color: #fff
     .open > a
-      background-color: #111
-      color: #fff
+      //background-color: #111
+      //color: #fff
       &:hover, &:focus
-        background-color: #111
+        //background-color: #111
         color: #fff
+    .open > a.user-dropdown
+      &:hover, &:focus
+        background-color: #0BA9F9
+
+
 
 /*************************
  ********Slider******

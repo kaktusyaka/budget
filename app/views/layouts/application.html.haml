@@ -18,6 +18,5 @@
             %button.close{ "data-dismiss" => "alert" }×
             = content_tag :div, msg, id: "flash_#{name}"
       = yield
-  = javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
   = javascript_include_tag 'application'
   = yield :overlay

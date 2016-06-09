@@ -10,22 +10,4 @@
     %li{ class: "#{ 'active' if categories_active?}" }= link_to "Categories", categories_path
     %li{ class: "#{ 'active' if transactions_active?}" }= link_to "Transactions", transactions_path
     %li{ class: "#{ 'active' if pricing_plans_active?}" }= link_to "Pricing Plans", pricing_plans_path
-  %ul.nav.navbar-nav.navbar-right
-    %li.dropdown
-      = link_to "#", class: "dropdown-toggle user-dropdown", "aria-expanded": "false", "aria-haspopup": "true", "data-toggle":"dropdown", role: "button" do
-        .row
-          .col-xs-3
-            - if current_user.photo
-              = image_tag current_user.photo.file_url(:small), class: 'pull-left img-rounded'
-            - else
-              = image_tag "", class: 'profile-pic media-object pull-left img-rounded', "data-name": current_user.first_name
-          .col-xs-9
-            = current_user.full_name
-            %br
-            %small= current_user.email
-            %span.caret
-      %ul.dropdown-menu
-        %li
-          = link_to "Show profile", edit_user_registration_path
-        %li
-          = link_to "Sign out", destroy_user_session_path, method: :delete
+  = render 'layouts/user_dropdown'

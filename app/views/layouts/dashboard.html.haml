@@ -30,6 +30,9 @@
                 = link_to "Our Team", "#our-team"
               %li
                 = link_to "Contact", "#contact"
+
+            - if current_user
+              = render 'layouts/user_dropdown'
         / /.container
       / /nav
     / /header
