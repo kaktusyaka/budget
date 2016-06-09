@@ -34,6 +34,12 @@
             - if current_user
               = render 'layouts/user_dropdown'
         / /.container
+      .container
+        #flash_message
+          - flash.each do |name, msg|
+            %div{ class: "center alert fade in alert-#{ name }" }
+              %button.close{ "data-dismiss" => "alert" }×
+              = content_tag :div, msg, id: "flash_#{name}"
       / /nav
     / /header
     = yield

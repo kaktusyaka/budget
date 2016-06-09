@@ -217,11 +217,6 @@
                   %i.fa.fa-envelope.fa-2x
                   info@savebadget.com
         .col-md-4.wow.fadeInUp{"data-wow-delay" => "0.6s", "data-wow-offset" => "0"}
-          #flash_message
-            - flash.each do |name, msg|
-              %div{ class: "center alert fade in alert-#{ name }" }
-                %button.close{ "data-dismiss" => "alert" }×
-                = content_tag :div, msg, id: "flash_#{name}"
           %form.form-inline#contact_us_form
             .form-group
               = text_field_tag :'contact_us[name]', nil, class: 'form-control', placeholder: "name"

@@ -12,8 +12,9 @@
         data: self.serialize()
         success: (data) ->
           Forms.submitting(self, "Submit Message")
-          Notifications.success(data.success)
           $('#contact_us_form')[0].reset()
+          $(".nav.navbar-nav a:first").click()
+          Notifications.success(data.success)
         error: (xhr, ajaxOptions, thrownError) ->
           Forms.submitting(self, "Submit Message")
 
