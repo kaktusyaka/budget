@@ -3,13 +3,6 @@
     @init =->
       loadFormToModal()
 
-    initDatepicker = ->
-      $('.datepicker').datepicker
-        format: 'dd/mm/yyyy'
-        weekStart: 1
-        clearBtn: true
-        todayHighlight: true
-
     initWysiwygEditor = ->
       $('.wysihtml5').each (i, elem) ->
         $(elem).wysihtml5()
@@ -31,7 +24,7 @@
         e.preventDefault()
         $('#transactions-form').modal('show')
         $($(@).data('remote-target')).load $(@).attr('href'), ->
-          initDatepicker()
+          Datepicker.init()
           initWysiwygEditor()
           initAutocomplete('#transaction_category_name', gon.user_categories)
 

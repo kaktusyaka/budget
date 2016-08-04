@@ -27,6 +27,7 @@ class TransactionsController < ApplicationController
     transactions = set_transactions
     current_balance = transactions.current_balance
 
+
     render json: {
       current_balance: current_balance,
       expenditures_by_category: Transaction.expenditures_this_month(transactions).unshift(['Categoty Name', 'Amount']),

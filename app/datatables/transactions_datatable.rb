@@ -16,7 +16,9 @@ class TransactionsDatatable
       draw: params[:sEcho].to_i,
       recordsTotal: transactions.count,
       recordsFiltered: transactions.total_count,
-      data: data
+      data: data,
+
+      expenditures_amount: filtered_transactions(params).expenditures_amount.sum(:amount)
     }
   end
 
@@ -39,11 +41,12 @@ class TransactionsDatatable
   end
 
   def fetch_transactions
-    transactions = set_transactions.reorder("#{sort_column} #{sort_direction}")
-    if params[:search][:value].present?
-      transactions = transactions.where("categories.name ilike :search or description ilike :search", search: "%#{params[:search][:value]}%")
-    end
+    transactions = filtered_transactions(params)
     transactions.page(page).per(per_page)
+  end
+
+  def filtered_transactions(attr)
+    set_transactions.reorder("#{sort_column} #{sort_direction}").search(attr)
   end
 
   def page

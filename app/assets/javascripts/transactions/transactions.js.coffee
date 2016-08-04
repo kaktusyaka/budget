@@ -5,6 +5,12 @@
       initDelete(table)
       submitTransactionForm(table) if $('#transactions-form').length
       GoogleChart.init()
+      Datepicker.init()
+      initFilters(table)
+
+    initFilters = (table) ->
+      $('.transactions #date_from, .transactions #date_to').change ->
+        table.ajax.reload()
 
     initDatatable = ->
       $(".datatable table").DataTable({
@@ -24,8 +30,17 @@
                 $('#new-transaction').remove()
                 $('#flash_message').prepend JST['templates/transactions/cannot_create_transactions_message']({ quantity_of_transactions: data.quantity_of_transactions, pricing_plan: data.pricing_plan })
 
-        ajax:
+        ajax: {
           url: $(@).data('source')
+          data: (d) ->
+            $.extend( {}, d, {
+              search_by_date_from:      $('#date_from').val()
+              search_by_date_to:        $('#date_to').val()
+            })
+          dataSrc: (json) ->
+            $(".transactions #expenditures span").text(json.expenditures_amount)
+            return json.data
+        }
       })
 
     initDelete = (table) ->

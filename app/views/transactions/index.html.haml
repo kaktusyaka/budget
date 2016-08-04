@@ -1,5 +1,27 @@
 .col-md-12
   %h1 Listing Transactions
+
+  .form-group.filters
+    %lable.control-label.col-sm-2
+      %b Date From:
+    .col-sm-2
+      = text_field_tag :date, nil, id: 'date_from',
+                                   placeholder: "dd/mm/yyyy",
+                                   'data-behaviour' => 'datepicker',
+                                   class: 'datepicker'
+    %lable.control-label.col-sm-2
+      %b Date To:
+    .col-sm-2
+      = text_field_tag :date, nil, id: 'date_to',
+                                   placeholder: "dd/mm/yyyy",
+                                   'data-behaviour' => 'datepicker',
+                                   class: 'datepicker'
+
+    %lable.control-label.col-sm-4
+      = button_tag type: 'submit', style: 'color:#FFFFFF;', class: 'btn btn-default' do
+        %i.fa.fa-search.fa-lg
+
+
   %p.download-csv
     Download:
     = link_to "CSV", transactions_path(format: "csv")
@@ -19,6 +41,11 @@
   - if can? :create, Transaction
     %br
       = link_to 'New Transaction', new_transaction_path, data: { :'remote-target' => '#transactions-form .modal-content' }, class: 'open-transaction-js', id: 'new-transaction', title: "New"
+
+.col-md-12#expenditures
+  %h2
+    = "Expenditures amount:"
+    %span= 0
 
 .col-md-12#current_balance
   %h2

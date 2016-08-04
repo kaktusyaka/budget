@@ -14,6 +14,8 @@ class Transaction < ActiveRecord::Base
   scope :income_amount,       ->{ where(income: true) }
   scope :expenditures_amount, ->{ where(income: false) }
   scope :this_month,          ->{ where(date: Date.current.beginning_of_month..Date.current.end_of_month) }
+  scope :date_from,           -> (date_from) { where("date >= ?", date_from ) }
+  scope :date_to,             -> (date_to)   { where("date <= ?", date_to ) }
 
   before_save :set_category
 
@@ -50,6 +52,24 @@ class Transaction < ActiveRecord::Base
         csv <<  attributes.map{ |attr| transaction.send(attr) }
       end
     end
+  end
+
+  def self.search params
+
+    data = where(nil)
+
+    if params[:search][:value].present?
+      data = data.where("categories.name like :search or description like :search", search: "%#{params[:search][:value]}%")
+    end
+
+    unless params[:search_by_date_from].blank?
+      data = data.date_from(params[:search_by_date_from].to_date)
+    end
+
+    unless params[:search_by_date_to].blank?
+      data = data.date_to(params[:search_by_date_to].to_date)
+    end
+    data
   end
 
   def type
