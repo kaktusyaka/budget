@@ -10,12 +10,20 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//####################################### BOWER ####################
+//= require jquery/dist/jquery
 //= require jquery_ujs
-//= require dataTables/jquery.dataTables
-//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
-//= require jquery-ui/autocomplete
-//= require jquery-ui/sortable
+//= require datatables.net/js/jquery.dataTables
+//= require datatables-bootstrap3/BS3/assets/js/datatables
+//= require jquery-ui/ui/core
+//= require jquery-ui/ui/widget
+//= require jquery-ui/ui/position
+//= require jquery-ui/ui/menu
+//= require jquery-ui/ui/autocomplete
+//= require jquery-ui/ui/mouse
+//= require jquery-ui/ui/sortable
+//
+//
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
 //= require bootstrap-wysihtml5

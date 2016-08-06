@@ -22,13 +22,14 @@ gem 'validates_timeliness', '~> 4.0'
 # Assets
 gem 'eco'
 gem 'haml'
-gem 'jquery-datatables-rails', '~> 3.3.0'
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+#gem 'jquery-datatables-rails', '~> 3.3.0' # moved to Bower
+#gem 'jquery-ui-rails' # moved to Bower
 gem 'coffee-rails', '~> 4.1.0'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'bootstrap-wysihtml5-rails'
 gem 'bootstrap-datepicker-rails'
+gem 'bower-rails', '~> 0.10.0'
 gem "font-awesome-rails"
 gem 'gon'
 gem 'sass-rails', '~> 5.0'

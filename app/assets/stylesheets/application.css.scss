@@ -12,9 +12,15 @@
  *
  *= require_tree .
  *= require_self
- *= require jquery-ui/sortable
- *= require jquery-ui/autocomplete
- *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+
+//####################################### BOWER ####################
+ *= require jquery-ui/themes/base/theme
+ *= require jquery-ui/themes/base/core
+ *= require jquery-ui/themes/base/sortable
+ *= require jquery-ui/themes/base/menu
+ *= require jquery-ui/themes/base/autocomplete
+ *= require datatables-bootstrap3/BS3/assets/css/datatables
+
  *= require select2
  *= require select2-bootstrap
  *= require bootstrap-datepicker3

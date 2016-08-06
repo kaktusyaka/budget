@@ -74,6 +74,7 @@ GEM
       sass (>= 3.3.4)
     bootstrap-wysihtml5-rails (0.3.3.8)
       railties (>= 3.0)
+    bower-rails (0.10.0)
     builder (3.2.2)
     byebug (8.2.2)
     cancancan (1.13.1)
@@ -352,6 +353,7 @@ DEPENDENCIES
   bootstrap-datepicker-rails
   bootstrap-sass (~> 3.3.6)
   bootstrap-wysihtml5-rails
+  bower-rails (~> 0.10.0)
   byebug
   cancancan (~> 1.10)
   capybara
@@ -393,5 +395,8 @@ DEPENDENCIES
   vcr
   webmock
 
+RUBY VERSION
+   ruby 2.3.0p0
+
 BUNDLED WITH
-   1.11.2
+   1.12.5
