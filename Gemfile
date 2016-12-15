@@ -42,6 +42,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
 gem 'newrelic_rpm'
+gem 'rails_admin', '~> 1.0'
 
 group :development, :test do
   gem 'byebug'
