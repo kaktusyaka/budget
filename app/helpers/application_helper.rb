@@ -14,7 +14,7 @@ module ApplicationHelper
     if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
       links <<  [ "Forgot your password?", new_password_path(resource_name) ]
     end
-    if controller_name != 'registrations'
+    if devise_mapping.registerable? && controller_name != 'registrations'
       links << [ "Register now", new_registration_path(resource_name) ]
     end
     if devise_mapping.confirmable? && controller_name != 'confirmations'

@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   accepts_nested_attributes_for :photo, allow_destroy: true, reject_if: ->(attr){ attr['file'].blank? and attr['remote_file_url'].blank? }
-  after_create :set_pricing_plan
+  # after_create :set_pricing_plan
 
   def self.from_omniauth auth, current_user = nil
     authorization = Authorization.from_omniauth auth
