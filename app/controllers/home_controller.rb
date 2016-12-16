@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  skip_before_filter :authenticate_user!
+  skip_before_action :authenticate_user!
   layout 'dashboard', only: [:index, :contact_us]
 
   respond_to :json, only: [:contact_us]

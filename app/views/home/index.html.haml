@@ -148,12 +148,12 @@
                 %h2=pricing_plan.name
                 %span= number_to_currency pricing_plan.price
               %li
-                - if pricing_plan.premium?
+                - if pricing_plan.try(:premium?)
                   Unlimate
                 - else
                   #{pricing_plan.quantity_of_categories} categories
               %li
-                - if pricing_plan.premium?
+                - if pricing_plan.try(:premium?)
                   Unlimate
                 - else
                   #{pricing_plan.quantity_of_transactions} transactions

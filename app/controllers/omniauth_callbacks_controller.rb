@@ -1,5 +1,5 @@
 class OmniauthCallbacksController < ApplicationController
-  skip_before_filter :authenticate_user!
+  skip_before_action :authenticate_user!
 
   def self.provides_callback_for(provider)
     class_eval %Q{
