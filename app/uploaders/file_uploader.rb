@@ -44,7 +44,7 @@ class FileUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png svg)
   end
 
-  def need_to_resize?
+  def need_to_resize?(new_file)
     new_file.content_type.start_with?('image') && !new_file.content_type.include?('svg')
   end
 end

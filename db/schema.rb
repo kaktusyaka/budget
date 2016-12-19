@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161216045818) do
+ActiveRecord::Schema.define(version: 20161219095657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,9 +36,8 @@ ActiveRecord::Schema.define(version: 20161216045818) do
     t.string   "uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_authorizations_on_user_id", using: :btree
   end
-
-  add_index "authorizations", ["user_id"], name: "index_authorizations_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.integer  "user_id"
@@ -47,10 +45,9 @@ ActiveRecord::Schema.define(version: 20161216045818) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "position"
+    t.index ["name"], name: "index_categories_on_name", using: :btree
+    t.index ["user_id"], name: "index_categories_on_user_id", using: :btree
   end
-
-  add_index "categories", ["name"], name: "index_categories_on_name", using: :btree
-  add_index "categories", ["user_id"], name: "index_categories_on_user_id", using: :btree
 
   create_table "contact_us", force: :cascade do |t|
     t.string   "email"
@@ -73,9 +70,8 @@ ActiveRecord::Schema.define(version: 20161216045818) do
     t.string   "queue"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
-
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "photos", force: :cascade do |t|
     t.integer  "imageable_id"
@@ -83,9 +79,8 @@ ActiveRecord::Schema.define(version: 20161216045818) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.string   "file"
+    t.index ["imageable_type", "imageable_id"], name: "index_photos_on_imageable_type_and_imageable_id", using: :btree
   end
-
-  add_index "photos", ["imageable_type", "imageable_id"], name: "index_photos_on_imageable_type_and_imageable_id", using: :btree
 
   create_table "pricing_plans", force: :cascade do |t|
     t.string   "name"
@@ -96,6 +91,14 @@ ActiveRecord::Schema.define(version: 20161216045818) do
     t.datetime "updated_at",                                        null: false
   end
 
+  create_table "sub_categories", force: :cascade do |t|
+    t.integer  "category_id"
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["category_id"], name: "index_sub_categories_on_category_id", using: :btree
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.integer  "category_id"
     t.boolean  "income",                               default: false
@@ -104,9 +107,8 @@ ActiveRecord::Schema.define(version: 20161216045818) do
     t.text     "description"
     t.datetime "created_at",                                           null: false
     t.datetime "updated_at",                                           null: false
+    t.index ["category_id"], name: "index_transactions_on_category_id", using: :btree
   end
-
-  add_index "transactions", ["category_id"], name: "index_transactions_on_category_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -130,11 +132,10 @@ ActiveRecord::Schema.define(version: 20161216045818) do
     t.string   "time_zone"
     t.integer  "pricing_plan_id"
     t.string   "stripe_id"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["pricing_plan_id"], name: "index_users_on_pricing_plan_id", using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["pricing_plan_id"], name: "index_users_on_pricing_plan_id", using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "authorizations", "users"
   add_foreign_key "users", "pricing_plans"
