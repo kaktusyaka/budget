@@ -13,8 +13,8 @@ Rails.application.configure do
   config.eager_load = false
 
   # Configure static file server for tests with Cache-Control for performance.
-  config.serve_static_files   = true
-  config.static_cache_control = 'public, max-age=3600'
+  config.public_file_server.enabled   = true
+  config.public_file_server.headers = { 'Cache-Control' => 'public, max-age=3600' }
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
@@ -50,5 +50,4 @@ Rails.application.configure do
   config.app_domain = 'localhost.test'
   config.app_port = '8080'
   config.action_mailer.default_url_options = { host: 'localhost:3000'}
-
 end
